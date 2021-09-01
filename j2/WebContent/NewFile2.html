@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 - 부모,자식 요소 영향 관계</title>
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+   *{
+      margin: 2px;
+      padding: 10px;
+   }
+   .inner{
+      background: orange;
+   }
+   .outer{
+      background: lightgreen;
+   }
+</style>
+<script type="text/javascript">
+   $(document).ready(function(){
+      $(".wrap1").mouseover(function(){ // 부모요소에게 이벤트적용시 자식에게도 적용됨
+         $(".result").append("<strong>마우스오버</strong>");
+      });
+      $(".wrap2").mouseenter(function(){
+         $(".result").append("<em>마우스엔터</em>");
+      });
+   });
+</script>
+</head>
+<body>
+
+<div class="wrap1 outer">
+   <div class="inner">마우스오버</div>
+</div>
+<div class="wrap2 outer">
+   <div class="inner">마우스엔터</div>
+</div>
+<div class="result"></div>
+
+</body>
+</html>

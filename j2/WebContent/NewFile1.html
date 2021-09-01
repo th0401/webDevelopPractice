@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사진 갤러리형 출력</title>
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	#container{
+		width:500px;
+	}
+	.page, .page_n{
+		margin:10px;
+	}
+	#container .page button{
+		border: 1px solid red;
+		background: pink;
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+	}
+	#container .photo{
+		width: 250px;
+		height: 250px;
+		border: 1px solid black;
+		overflow: hidden;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var totalNum=$(".photo > div").length;
+		var cNum=1;
+		$(".page_n > span:first").text(cNum);
+		$(".page_n > span:last").text(totalNum);
+		$(".btn1").click(function(){
+			cNum--;
+			if(cNum < 1){
+				cNum=totalNum;
+			}
+			$(".page_n > span:first").text(cNum);
+			$(".photo div:last").insertBefore(".photo div:first");
+		});
+		$(".btn2").click(function(){
+			cNum++;
+			if(cNum > totalNum){
+				cNum=1;
+			}
+			$(".page_n > span:first").text(cNum);
+			$(".photo div:first").insertAfter(".photo div:last");
+		});
+	});
+</script>
+</head>
+<body>
+	
+	<div id="container">
+		<div class="page">
+			<span class="page_n">
+				<span></span> / <span></span>
+			</span>
+				<button class="btn1">&lt;</button>
+				<button class="btn2">&gt;</button>
+		</div>
+		<div class="photo">
+			<div><img alt="첫번째 사진 사조참치!" src="image/참치.ico"></div>
+			<div><img alt="두번째 사진 돔황챠!" src="image/run.png"></div>
+			<div><img alt="세번째 사진 완벽히 이해했어!" src="image/iunderstand.jpg"></div>
+		</div>
+	</div>
+	
+</body>
+</html>

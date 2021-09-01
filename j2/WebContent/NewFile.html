@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아코디언 액션</title>
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style : none;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+		font-weight: bold;
+		/* 폰트,배경색 등이 빠져있습니다. 이렇게 하면 폰트랑 배경색 넣어주는 협력을 위한 안내문 */
+	}
+	#menu{
+		position : absolute;
+		width: 30%;
+		height : 100%;
+		background: lightblue;
+	}
+	#menu a{
+		display: block;
+		background: lightgreen;
+		border-top : 1px solid orange;
+		border-bottom : 2px solid orange;
+	}
+	#menu a.on{
+		color:red;
+	}
+	#menu li ul{
+		display : none;
+	}
+	#menu li ul.on{
+		display : block;
+	}
+	#menu ul a{
+		background: lightpink;
+		text-align: center;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#menu a.m").click(function(){
+			$(this).next().addBack().toggleClass("on");
+		});
+	});
+</script>
+</head>
+<body>
+	
+	<ul id="menu">
+		<li><a href="#" class="m">상의</a>
+			<ul>
+				<li><a href="#">긴팔티</a></li>
+				<li><a href="#">반팔티</a></li>
+				<li><a href="#">가디건</a></li>
+			</ul>
+		</li>
+		<li><a href="#" class="m">하의</a>
+			<ul>
+				<li><a href="#">청바지</a></li>
+				<li><a href="#">반바지</a></li>
+				<li><a href="#">수면바지</a></li>
+			</ul>
+		</li>
+		<li><a href="#" class="m">신발</a>
+			<ul>
+				<li><a href="#">운동화</a></li>
+				<li><a href="#">구두</a></li>
+				<li><a href="#">슬리퍼</a></li>
+			</ul>
+		</li>
+	</ul>
+	
+</body>
+</html>

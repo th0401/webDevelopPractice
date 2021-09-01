@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>트리거</title>
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+	*{
+		margin : 3px;
+		padding : 3px;
+	}
+	body{
+		overflow:hidden;
+	}
+	#box1{
+		height : 100px;
+		background : hotpink;
+		transform : translateX(-95%);
+		transition-duration: 2s;
+	}
+	#box2{
+		height : 100px;
+		background : beige;
+		transform : translateX(+95%);
+		transition-duration: 2s;
+	}
+	#box1.on,#box2.on{
+		transform: translateX(0);
+	}
+</style>
+<script type="text/javascript">
+//이벤트 트리거 발생 -> 리스너 인지 -> 동작수행(이벤트 발생, 메서드 호출)
+	$(document).ready(function(){
+		$("#btn1").on("click", function(){
+			$("#box1").toggleClass("on");
+		}).trigger("click");
+		$("#btn2").on("click",function(){
+			$("#box2").toggleClass("on");
+		}).trigger("click");
+		$("#btn3").on("click",function(){
+			$("#btn1").trigger("click");
+			$("#btn2").trigger("click");
+		});
+	});
+
+</script>
+</head>
+<body>
+	
+<div id = "box1"></div>	
+<div id = "box2"></div>
+<button id="btn1">버튼1</button>	
+<button id="btn2">버튼2</button>
+<button id="btn3">버튼3</button>
+
+</body>
+</html>
