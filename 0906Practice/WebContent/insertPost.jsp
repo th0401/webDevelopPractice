@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="model.member.MemberVO"%>
-	<% 
-				MemberVO vo= (MemberVO)session.getAttribute("memberVO");
-				%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +11,7 @@
 <hr>
 	
 		<form action="ctrl.jsp?action=insertP" method="post" name="form1">
-		<input type="hidden" name="userID" value="<%=vo.getUserID()%>">
+		<input type="hidden" name="userID" value="${memberVO.userID}">
 			<table border="1">
 				<tr>
 					<th>제목</th>

@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.member.MemberVO"%>
     <%request.setCharacterEncoding("UTF-8"); %>
-   <% 
-				MemberVO vo= (MemberVO)session.getAttribute("memberVO");
-				%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,15 +28,15 @@
 <table border="1">
 	<tr>
 		<td>아이디</td>
-		<td><%=vo.getUserID() %></td>
+		<td>${memberVO.userID}</td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td><%=vo.getUserPW() %></td>
+		<td>${memberVO.userPW}</td>
 	</tr>
 	<tr>
 		<td>이름</td>
-		<td><%=vo.getUserName() %></td>
+		<td>${memberVO.userName}</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="right"><input type= "submit" value="회원정보변경"></td>

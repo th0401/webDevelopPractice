@@ -123,7 +123,7 @@ public class PostDAO {
 		boolean res=false;
 		PreparedStatement pstmt=null;
 		try{
-			String sql="delete from board where pnum=?";
+			String sql="delete from post where pnum=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getPnum());
 			pstmt.executeUpdate();

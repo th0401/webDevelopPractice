@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="model.member.MemberVO,java.util.ArrayList,model.post.*"%>
+    pageEncoding="UTF-8" import="model.member.MemberVO,java.util.ArrayList,model.post.*"
+     errorPage="error.jsp"%>
     <%request.setCharacterEncoding("UTF-8"); %>
     <jsp:useBean id="memberDAO" class="model.member.MemberDAO"/>
     <jsp:useBean id="memberVO" class="model.member.MemberVO"/>
@@ -35,11 +36,12 @@ else if(action.equals("updateP")){
 }
 
 else if(action.equals("deleteP")){
+	System.out.println(postVO);
 	if(postDAO.deleteDB(postVO)){
 		response.sendRedirect("ctrl.jsp?action=main");
 	}
 	else{
-		throw new Exception("DB 추가중 오류 발생!");
+		throw new Exception("DB 삭제중 오류 발생!");
 	}
 }
 else if(action.equals("editP")){
@@ -95,7 +97,6 @@ else if(action.equals("updateM")){
 }
 else if(action.equals("deleteM")){
 	memberVO=memberDAO.selectOne((MemberVO)session.getAttribute("memberVO"));
-	System.out.println(memberVO);
 	if(memberDAO.deleteM(memberVO)){
 		session.invalidate();
 		response.sendRedirect("ctrl.jsp?action=main");
