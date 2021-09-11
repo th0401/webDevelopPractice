@@ -29,7 +29,7 @@
 			<myTags:login />
 		</c:when>
 		<c:when test="${memberVO!=null}">
-			<h2>${memberVO.userID}님안녕하세요!</h2>
+			<h2>${memberVO.userID}님 안녕하세요!</h2>
 			<myTags:logout />
 		</c:when>
 	</c:choose>
