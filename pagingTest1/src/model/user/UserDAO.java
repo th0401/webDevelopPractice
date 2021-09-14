@@ -91,4 +91,33 @@ public class UserDAO {
 		}
 		return datas;
 	}
+	public UserVO selectOne(UserVO vo) {
+		UserVO data = null;
+		conn = JNDI.getConnection();
+		String sql = "select * from userInfo where userID=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getUserID());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				data=new UserVO();
+				data.setUdate(rs.getDate("udate"));
+				data.setName(rs.getString("name"));
+				data.setUserPW(rs.getString("userPW"));
+				data.setUserID(rs.getString("userID"));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return data;
+	}
 }

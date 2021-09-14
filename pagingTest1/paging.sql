@@ -17,7 +17,7 @@ create table mmessage(
 create table reply(
    reid int primary key,
     meid int,
-    userID varchar(15),
+    userID varchar(15),select * from mmessage where userID='timo' and  rownum <= 3 order by udate;
     udate date default sysdate,
     rmsg varchar(50),
     constraint msgrp foreign key (meid) references mmessage (meid) on delete cascade
@@ -36,4 +36,5 @@ select * from reply;
 select * from userInfo;
 select * from mmessage;
 
+select * from mmessage where rownum <= 3 order by udate;
 

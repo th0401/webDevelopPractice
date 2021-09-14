@@ -26,7 +26,7 @@ public class MessageDAO {
 			}
 			// 특정 회원
 			else{
-				sql = "select * from mmessage where userID=? rownum <= ? order by udate";
+				sql = "select * from mmessage where userID=? and rownum <= ? order by udate";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,userID);
 				pstmt.setInt(2,cnt);
@@ -64,13 +64,15 @@ public class MessageDAO {
 				ms.setRlist(rlist);
 				datas.add(ms);
 				rrs.close();
+				//System.out.println(m);
+				//System.out.println(rlist);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
 			try {
-				rs.close();
+				//rs.close();
 				pstmt.close();
 				conn.close();
 			} catch (SQLException e) {

@@ -13,17 +13,19 @@
 	String action=request.getParameter("action");
 	String url="control.jsp?action=main";	
 	String mcntt=request.getParameter("mcnt");
-	int mcnt=10;
+	int mcnt=1;
 	if(mcntt!=null){
 		mcnt=Integer.parseInt(mcntt);
 	}
 	url= url+ "&mcnt="+mcnt;
 	String selUser=request.getParameter("selUser");
 	if(selUser!=null){
-		url= url+ "&selUser="+selUser;
+		url= url+ "&userID="+selUser;
 	}
 			
 	if(action.equals("main")){
+		//System.out.println(selUser);
+		//System.out.println(mcnt);
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
 		ArrayList<UserVO> newUsers=uDAO.selectAll();
 		
@@ -36,18 +38,52 @@
 	}
 	else if(action.equals("insertMDB")){
 		if(mDAO.insert(mVO)){
-			response.sendRedirect("control.jsp?action=main");
+			response.sendRedirect(url);
 		}
 		else{
 			throw new Exception("MDB 추가중 오류 발생!");
 		}
 	}
+	else if(action.equals("deleteMDB")){
+		System.out.println(mVO);
+		if(mDAO.delete(mVO)){
+			response.sendRedirect(url);
+		}
+		else{
+			throw new Exception("MDB 삭제중 오류발생!");
+		}
+	}
 	else if(action.equals("insertRDB")){
 		if(rDAO.insert(rVO)){
-			response.sendRedirect("control.jsp?action=main");
+			response.sendRedirect(url);
 		}
 		else{
 			throw new Exception("RDB 추가중 오류 발생!");
 		}
 	}
+	else if(action.equals("deleteRDB")){
+		if(rDAO.delete(rVO)){
+			response.sendRedirect(url);
+		}
+		else{
+			throw new Exception("RDB 삭제중 오류발생!");
+		}
+	}
+	else if(action.equals("login")){
+		
+		uVO=uDAO.selectOne(uVO);
+		if(uVO==null){
+			out.println("<script>alert('로그인 실패');history.go(-1)</script>");
+			
+		}
+		else{
+			session.setAttribute("uVO", uVO);
+			response.sendRedirect(url);
+		}
+	}
+	else if(action.equals("logout")){
+		session.invalidate();
+		response.sendRedirect("control.jsp?action=main");
+	}
+	
 %>
