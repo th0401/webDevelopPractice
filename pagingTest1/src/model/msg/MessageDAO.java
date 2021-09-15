@@ -20,13 +20,13 @@ public class MessageDAO {
 		try {
 			// 전체
 			if((userID == null) || (userID.equals(""))) {
-				sql = "select * from mmessage where rownum <= ? order by udate";
+				sql = "select * from mmessage where rownum <= ? order by meid desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, cnt);
 			}
 			// 특정 회원
 			else{
-				sql = "select * from mmessage where userID=? and rownum <= ? order by udate";
+				sql = "select * from mmessage where userID=? and rownum <= ? order by meid desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,userID);
 				pstmt.setInt(2,cnt);
@@ -43,7 +43,7 @@ public class MessageDAO {
 				m.setUserID(rs.getString("userID"));
 				m.setUdate(rs.getDate("udate"));
 				
-				String rsql = "select * from reply where meid=? order by udate desc";
+				String rsql = "select * from reply where meid=? order by reid desc";
 				pstmt = conn.prepareStatement(rsql);
 				pstmt.setInt(1,rs.getInt("meid"));
 				ResultSet rrs = pstmt.executeQuery();

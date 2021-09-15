@@ -85,5 +85,15 @@
 		session.invalidate();
 		response.sendRedirect("control.jsp?action=main");
 	}
+	else if(action.equals("signUp")){
+		if(uDAO.insert(uVO)){
+			session.setAttribute("uVO", uVO);
+			out.println("<script>window.close();</script>");
+			
+		}
+		else{
+			throw new Exception("UDB 추가중 오류발생!");
+		}
+	}
 	
 %>

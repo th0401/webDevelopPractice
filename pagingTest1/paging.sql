@@ -36,5 +36,5 @@ select * from reply;
 select * from userInfo;
 select * from mmessage;
 
-select * from mmessage where rownum <= 3 order by udate;
+select * from mmessage order by meid desc;
 
