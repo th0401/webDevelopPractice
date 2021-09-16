@@ -20,7 +20,7 @@
 	url= url+ "&mcnt="+mcnt;
 	String selUser=request.getParameter("selUser");
 	if(selUser!=null){
-		url= url+ "&userID="+selUser;
+		url= url+ "&selUser="+selUser;
 	}
 			
 	if(action.equals("main")){
@@ -88,12 +88,16 @@
 	else if(action.equals("signUp")){
 		if(uDAO.insert(uVO)){
 			session.setAttribute("uVO", uVO);
-			out.println("<script>window.close();</script>");
+			out.println("<script>alert('회원가입 완료!로그인후 이용해주세요!');window.close();</script>");
 			
 		}
 		else{
-			throw new Exception("UDB 추가중 오류발생!");
+			out.println("<script>alert('회원가입 실패! 다시 작성해보세요!');history.go(-1);</script>");
 		}
 	}
-	
+	else if(action.equals("likeup")){
+		//System.out.println(mVO);
+		mDAO.update(mVO);
+		response.sendRedirect(url);
+	}
 %>

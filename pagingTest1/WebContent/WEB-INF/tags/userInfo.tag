@@ -4,7 +4,7 @@
 		<c:forEach var="v" items="${newUsers}">
 			<tr>
 				<td>아이디</td>
-				<td>${v.userID}</td>
+				<td><a href="control.jsp?action=main&mcnt=${mcnt}&selUser=${v.userID}">${v.userID}</a></td>
 				<td>비밀번호</td>
 				<td>${v.userPW}</td>
 				<td>이름</td>
