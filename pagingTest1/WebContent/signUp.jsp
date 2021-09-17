@@ -12,7 +12,7 @@
 <div style="text-align:center;">
 <h2>회원가입하기</h2>
 <br>
-<form style="display:inline-block;" action="control.jsp?action=signUp" method="post">
+<form style="display:inline-block;" action="signUp.do" method="post">
 	<table border="1">
 		<tr>
 			<td>아이디</td>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:choose>
 		<c:when test="${uVO!=null}">
-			<form action="control.jsp?action=insertMDB" method="post">
+			<form action="insertMDB.do" method="post">
 				<input type="hidden" name="userID" value="${uVO.userID}">
 				<input type="hidden" name="mcnt" value="${mcnt}">
 				<table>

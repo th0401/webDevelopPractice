@@ -45,7 +45,7 @@ public class ReplyDAO {
 		}
 		return true;
 	}
-	public boolean delete(ReplyVO vo) throws SQLException {
+	public boolean delete(ReplyVO vo) {
 		conn = JNDI.getConnection();
 		String sql = "delete from reply where reid = ?";
 		String sql3 = "update mmessage set replycount=replycount-1 where meid=?";
@@ -61,7 +61,12 @@ public class ReplyDAO {
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 		finally {

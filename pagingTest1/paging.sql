@@ -31,7 +31,7 @@ insert into reply values(3,2,'timo',sysdate,'´ñ±Û1');
 insert into reply values(4,2,'timo',sysdate,'´ñ±Û2');
 insert into reply values(5,2,'timo',sysdate,'´ñ±Û3');
 
-delete from userInfo where userID='5555';
+delete from userInfo where userID='Å×½ºÆ®È¸¿ø';
 select * from reply;
 select * from userInfo;
 select * from mmessage;

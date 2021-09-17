@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@attribute name="userID" %>
 <%@attribute name="meid" %>
-<form action="control.jsp?action=insertRDB" method="post">
+<form action="insertRDB.do" method="post">
 					<input type="hidden" name="userID" value="${userID}"> 
 					<input type="hidden" name="meid" value="${meid}">
 					<input type="hidden" name="mcnt" value="${mcnt}">

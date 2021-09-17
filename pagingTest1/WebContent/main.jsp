@@ -32,7 +32,7 @@
 	<hr>
 	<!-- 옵션초기화로고 -->
 	<ol>
-		<li><a href="control.jsp?action=main"><img alt="로고" src="img/tc.jpg" style="width:80px;height:100px;"></a></li>
+		<li><a href="main.do"><img alt="로고" src="img/tc.jpg" style="width:80px;height:100px;"></a></li>
 	</ol>
 	<hr>
 	

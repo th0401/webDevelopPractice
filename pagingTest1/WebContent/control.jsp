@@ -87,7 +87,7 @@
 	}
 	else if(action.equals("signUp")){
 		if(uDAO.insert(uVO)){
-			session.setAttribute("uVO", uVO);
+			
 			out.println("<script>alert('회원가입 완료!로그인후 이용해주세요!');window.close();</script>");
 			
 		}
