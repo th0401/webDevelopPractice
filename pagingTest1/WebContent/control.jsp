@@ -10,6 +10,7 @@
 <jsp:useBean id="uVO" class="model.user.UserVO" />
 <jsp:setProperty property="*" name="uVO"/>
 <%
+/*	
 	String action=request.getParameter("action");
 	String url="control.jsp?action=main";	
 	String mcntt=request.getParameter("mcnt");
@@ -100,4 +101,5 @@
 		mDAO.update(mVO);
 		response.sendRedirect(url);
 	}
+	*/
 %>

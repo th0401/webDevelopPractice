@@ -3,7 +3,8 @@
 <c:choose>
 		<c:when test="${uVO==null}">
 			<form action="login.do" method="post">	
-			<input type="hidden" name="mcnt" value="${mcnt}">		
+			<input type="hidden" name="mcnt" value="${mcnt}">
+			<input type="hidden" name="selUser" value="${selUser}">		
 				<table border="1">
 					<tr>
 						<td>아이디</td>

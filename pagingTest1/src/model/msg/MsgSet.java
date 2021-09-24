@@ -11,6 +11,7 @@ public class MsgSet {
 	public void setM(MessageVO m) {
 		this.m = m;
 	}
+	
 	public ArrayList<ReplyVO> getRlist() {
 		return rlist;
 	}

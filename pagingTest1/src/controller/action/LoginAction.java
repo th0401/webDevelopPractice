@@ -27,7 +27,7 @@ public class LoginAction implements Action{
 		UserDAO uDAO = new UserDAO();
 		UserVO uVO = new UserVO();
 		uVO.setUserID(request.getParameter("userID"));
-		uVO.setUserPW(request.getParameter("userPW"));
+		uVO.setUserPW(request.getParameter("userPW"));		
 		
 		if(uDAO.login(uVO)) {
 			HttpSession session=request.getSession();
