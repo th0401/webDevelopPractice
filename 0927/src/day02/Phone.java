@@ -1,0 +1,8 @@
+package day02;
+
+public interface Phone {
+	public void volumeUp();
+	   public void volumeDown();
+	   public void powerOn();
+	   public void powerOff();
+}
