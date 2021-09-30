@@ -3,40 +3,44 @@ package test;
 public class Sony implements Camera{
 
 	
-	VoiceRecording VR;
+	private VoiceRecording vr;
+	private String name;
 	
 	public Sony() {
 		System.out.println("소니 기본생성자 호출");
 	}
 	
-	public Sony(VoiceRecording VR) {
-		this.VR = VR;
-		System.out.println("소니 생성자 호출");
+	
+	public void setVr(VoiceRecording vr) {
+		this.vr = vr;
 	}
-	
-	
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public void powerOn() {
 		System.out.println("sony 전원킴");
-		VR.turnOn();
+		vr.turnOn();
 	}
 
 	@Override
 	public void powerOff() {
 		System.out.println("sony 전원끔");
-		VR.turnOff();
+		vr.turnOff();
 	}
 
 	@Override
 	public void zoomIn() {
 		System.out.println("sony 줌인");
-		VR.volumeUp();
+		vr.volumeUp();
 	}
 
 	@Override
 	public void zoomout() {
 		System.out.println("sony 줌아웃");
-		VR.volumeDown();
+		vr.volumeDown();
 	}
 
 }
