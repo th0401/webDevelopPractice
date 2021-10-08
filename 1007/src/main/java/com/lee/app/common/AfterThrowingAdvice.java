@@ -3,6 +3,7 @@ package com.lee.app.common;
 import org.aspectj.lang.JoinPoint;
 
 public class AfterThrowingAdvice {
+	//@AfterThrowing(pointcut="?Pointcut()",throwing="excep")
 	public void printLog(JoinPoint jp,Exception excep) {
 		String name=jp.getSignature().getName();
 		System.out.println("메서드명: "+name);

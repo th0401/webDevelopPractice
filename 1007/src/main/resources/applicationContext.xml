@@ -8,23 +8,34 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 <context:component-scan base-package="model"></context:component-scan>
-
-<bean class="com.lee.app.common.AfterAdvice" id="aAdvice"></bean>
+<context:component-scan base-package="com.lee.app"></context:component-scan>
+<!-- <bean class="com.lee.app.common.AfterAdvice" id="aAdvice"></bean>
 <bean class="com.lee.app.common.AroundAdvice" id="aroundAdvice"></bean>
-
-<aop:config>
+ -->
+ <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 
+ <!-- <aop:config>
+ 	<aop:pointcut expression="execution(* model.member123.*Impl.get*(..))" id="aPointcut"/>
+ 	<aop:pointcut expression="execution(* model.member123.*Impl.*(..))" id="cPointcut"/>
+ </aop:config> -->
+ 
+ <!-- <aop:config>
+ 	<aop:pointcut expression="execution(* model.board123.*Impl.get*(..))" id="aPointcut"/>
+ 	<aop:pointcut expression="execution(* model.board123.*Impl.*(..))" id="bPointcut"/>
+ </aop:config> -->
+<!-- <aop:config>
 		<aop:pointcut expression="execution(* model.board123.*Impl.get*(..))" id="aPointcut"/>
 		<aop:pointcut expression="execution(* model.board123.*Impl.*(..))" id="bPointcut"/>
 		<aop:pointcut expression="execution(* model.member123.*Impl.get*(..))" id="cPointcut"/>
 		
-		<!-- <aop:aspect ref="arAdvice">
+		<aop:aspect ref="arAdvice">
 			<aop:after-returning method="printLog" pointcut-ref="cPointcut" returning="obj"/>
-		</aop:aspect> -->
-		<!-- <aop:aspect ref="atAdvice">
+		</aop:aspect>
+		<aop:aspect ref="atAdvice">
 			<aop:after-throwing method="printLog" pointcut-ref="bPointcut" throwing="excep"/>
-		</aop:aspect> -->
+		</aop:aspect>
 		<aop:aspect ref="aroundAdvice">
 			<aop:around method="printLog" pointcut-ref="bPointcut"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
 </beans>

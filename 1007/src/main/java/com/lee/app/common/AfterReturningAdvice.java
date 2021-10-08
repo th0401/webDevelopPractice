@@ -1,10 +1,17 @@
 package com.lee.app.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Service;
 
 import model.member123.Member123VO;
 
+@Service
+@Aspect
 public class AfterReturningAdvice {
+	
+	@AfterReturning(pointcut="PointcutCommon.cPointcut()",returning="obj")
 	public void printLog(JoinPoint jp,Object obj) {
 		String name=jp.getSignature().getName();
 		System.out.println("메서드명: "+name);
