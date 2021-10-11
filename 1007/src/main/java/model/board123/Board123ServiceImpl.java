@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service("board123Service")
 public class Board123ServiceImpl implements Board123Service{
 	@Autowired
-	private Board123DAO Board123DAO; // alt+shift+R -> 이름 한번에 변경 가능!
+	private SpringBoard123DAO Board123DAO; // alt+shift+R -> 이름 한번에 변경 가능!
 	
 	@Override
 	public void insertBoard(Board123VO vo) {

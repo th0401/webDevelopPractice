@@ -14,7 +14,7 @@ AbstractApplicationContext factory=new GenericXmlApplicationContext("application
 		Board123Service bs=(Board123Service)factory.getBean("board123Service");
 		
 		Board123VO vo=new Board123VO();
-		vo.setContent("내용 작성중~~");
+		vo.setContent("jdbcTemplate실습완료");
 		vo.setTitle("제목입니다!");
 		vo.setWriter("관리자");
 		bs.insertBoard(vo);

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 @Service("member123Service")
 public class Member123ServiceImpl implements Member123Service{
 	@Autowired
-	private Member123DAO member123DAO;
+	private SpringMember123DAO member123DAO;
 	
 	@Override
-	public Member123VO getBoard(Member123VO vo) {
-		return member123DAO.getBoard(vo);
+	public Member123VO getMember(Member123VO vo) {
+		return member123DAO.getMember(vo);
 	}
 }

@@ -13,7 +13,7 @@ public class Member123Client {
 		Member123VO vo=new Member123VO();
 		vo.setId("admin");
 		vo.setPw("1234");
-		Member123VO data=ms.getBoard(vo);
+		Member123VO data=ms.getMember(vo);
 
 		if(data!=null) {
 			// 로그인 성공

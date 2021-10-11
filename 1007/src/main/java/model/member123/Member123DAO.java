@@ -16,7 +16,7 @@ public class Member123DAO {
 	
 	private final String getMember123SQL="select * from member123 where id=? and pw=?";
 	
-	public Member123VO getBoard(Member123VO vo) {
+	public Member123VO getMember(Member123VO vo) {
 		// 로그인에 성공한다면, Member123VO 객체가 리턴(반환)
 		// 실패한다면, 리턴이 null
 		Member123VO data=null;
