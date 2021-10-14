@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import model.common.JDBC;
+
 
 class Member123RowMapper implements RowMapper<Member123VO>{
 
@@ -28,7 +30,9 @@ class Member123RowMapper implements RowMapper<Member123VO>{
 public class SpringMember123DAO {
 
 	private final String getMember123SQL="select * from member123 where id=? and pw=?";
-
+	private final String insertSQL="insert into member123 (id,pw,name,role) values(?,?,?,?)";
+	private final String updateSQL="update member123 set pw=?,name=? where id=?";
+	private final String deleteSQL="delete member123 where id=?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -40,6 +44,29 @@ public class SpringMember123DAO {
 		return jdbcTemplate.queryForObject(getMember123SQL,args,new Member123RowMapper());
 
 	}
+	
+	public void insertMember(Member123VO vo) {
+		System.out.println("jdbcTemplate·Î insertMember");
+		
+		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getRole()};
+		jdbcTemplate.update(insertSQL,args);
+	}
+	
+	public void updateMember(Member123VO vo) {
+		System.out.println("jdbcTemplate·Î updateMember");
+		Object[] args= {vo.getPw(),vo.getName(),vo.getId()};
+		jdbcTemplate.update(updateSQL,args);
+		
+	}
+	
+	public void deleteMember(Member123VO vo) {
+		System.out.println("jdbcTemplate·Î deleteMember");
+		jdbcTemplate.update(updateSQL,vo.getId());
+	}
+	
+	
+	
+	
 
 }
 

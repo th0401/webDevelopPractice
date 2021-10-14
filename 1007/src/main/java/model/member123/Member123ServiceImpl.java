@@ -12,4 +12,22 @@ public class Member123ServiceImpl implements Member123Service{
 	public Member123VO getMember(Member123VO vo) {
 		return member123DAO.getMember(vo);
 	}
+
+	@Override
+	public void insertMember(Member123VO vo) {
+		member123DAO.insertMember(vo);
+		
+	}
+
+	@Override
+	public void updateMember(Member123VO vo) {
+		member123DAO.updateMember(vo);
+		
+	}
+
+	@Override
+	public void deleteMember(Member123VO vo) {
+		member123DAO.deleteMember(vo);
+		
+	}
 }
