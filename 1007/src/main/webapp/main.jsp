@@ -7,15 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<%
-	Board123DAO dao = new Board123DAO();
-	List<Board123VO> datas = dao.getBoardList(new Board123VO());
-	request.setAttribute("datas", datas);
-	System.out.println(datas);
-%>
+
 <body>
-<h3>로그아웃</h3>
+<h3><a href="logout.do">로그아웃</a></h3>
 <hr>
+<h1>${uVO.name}님 안녕하세요!</h1>
 <h1>글 목록</h1>
 <hr>
 	<table border="1">
@@ -24,7 +20,7 @@
 		</tr>
 		<c:forEach var="v" items="${datas}">
 		<tr>
-			<td>${v.id}</td><td><a href="getBoard.jsp?id=${v.id}">${v.title}</a></td><td>${v.writer}</td>
+			<td>${v.id}</td><td><a href="getBoard.do?id=${v.id}">${v.title}</a></td><td>${v.writer}</td>
 			</tr>
 		</c:forEach>
 	</table>

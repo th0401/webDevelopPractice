@@ -26,7 +26,7 @@ public class Board123DAO {
 	private final String getBoardSQL="select * from board123 where id=?";
 	private final String getBoardListSQL="select * from board123 order by id desc";
 
-	public void insertBoard(Board123VO vo) {
+	public boolean insertBoard(Board123VO vo) {
 		System.out.println("dao로 insertBoard");
 		try {
 			conn=JDBC.getConnection();
@@ -37,12 +37,14 @@ public class Board123DAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
-	public void updateBoard(Board123VO vo) {
+	public boolean updateBoard(Board123VO vo) {
 		System.out.println("dao로 updateBoard");
 		try {
 			conn=JDBC.getConnection();
@@ -53,12 +55,14 @@ public class Board123DAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
-	public void deleteBoard(Board123VO vo) {
+	public boolean deleteBoard(Board123VO vo) {
 		System.out.println("dao로 deleteBoard");
 		try {
 			conn=JDBC.getConnection();
@@ -67,10 +71,12 @@ public class Board123DAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
 	public List<Board123VO> getBoardList(Board123VO vo) {
 		System.out.println("dao로 getList");

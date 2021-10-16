@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글 등록창</title>
 </head>
 <body>
-
-<form action="insertBoardAction.jsp" method="post">
+<h2>글 등록창</h2>
+<hr>
+<br>
+<form action="insertBoard.do" method="post">
 	<table border="1">
+	<input type="hidden" name="writer" value="${uVO.name}">
 		<tr>
 			<td>글 제목</td>
 			<td><input type="text" name="title"></td>
@@ -23,6 +26,8 @@
 		</tr>
 	</table>
 </form>
+
+<a href="main.do">메인으로 가기</a>
 
 </body>
 </html>

@@ -9,14 +9,19 @@
     <filter-name>EncFilter</filter-name>
     <url-pattern>/EncFilter</url-pattern>
   </filter-mapping>
+  <context-param>
+    <param-name>encoding</param-name>
+    <param-value>UTF-8</param-value>
+  </context-param>
   <servlet>
     <description></description>
-    <display-name>FrontController</display-name>
-    <servlet-name>FrontController</servlet-name>
-    <servlet-class>controller.common.FrontController</servlet-class>
+    <display-name>DispatcherServlet</display-name>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>controller.common.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FrontController</servlet-name>
-    <url-pattern>/FrontController</url-pattern>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/DispatcherServlet</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
 </web-app>

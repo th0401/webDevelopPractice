@@ -20,7 +20,7 @@ public class Member123DAO {
 	private final String updateSQL="update member123 set pw=?,name=? where id=?";
 	private final String deleteSQL="delete member123 where id=?";
 	
-	public void insertMember(Member123VO vo) {
+	public boolean insertMember(Member123VO vo) {
 		System.out.println("dao·Î insertMember");
 		try {
 			conn=JDBC.getConnection();
@@ -28,16 +28,18 @@ public class Member123DAO {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPw());
 			pstmt.setString(3, vo.getName());
-			pstmt.setString(3, vo.getRole());
+			pstmt.setString(4, vo.getRole());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
-	public void updateMember(Member123VO vo) {
+	public boolean updateMember(Member123VO vo) {
 		System.out.println("dao·Î updateMember");
 		try {
 			conn=JDBC.getConnection();
@@ -48,13 +50,15 @@ public class Member123DAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
 	
-	public void deleteMember(Member123VO vo) {
+	public boolean deleteMember(Member123VO vo) {
 		System.out.println("dao·Î deleteMember");
 		try {
 			conn=JDBC.getConnection();
@@ -63,10 +67,12 @@ public class Member123DAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			JDBC.close(conn, pstmt);
 		}
+		return true;
 	}
 	
 	
