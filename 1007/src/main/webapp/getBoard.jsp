@@ -19,8 +19,7 @@
 		<tr>
 			<td>글 내용</td>
 			<td><input type="text" name="content" value="${data.content}" readonly></td>
-		</tr>
-		
+		</tr>		
 	</table>
 </form>
 
