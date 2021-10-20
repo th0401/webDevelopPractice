@@ -2,26 +2,26 @@ package controller.common;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import controller.action.ActionForward;
-import controller.action.GetBoardAction;
-import controller.action.InsertBoardAction;
-import controller.action.LoginAction;
-import controller.action.LogoutAction;
-import controller.action.MainAction;
-import controller.action.SignUpAction;
 
 /**
  * Servlet implementation class DispatcherServlet
  */
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private HandlerMapping handlerMapping;
+    private ViewResolver viewResolver;
+    
+	public void init() {
+		handlerMapping = new HandlerMapping();
+		viewResolver = new ViewResolver();
+		viewResolver.setPrefix("./");
+		viewResolver.setSuffix(".jsp");
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -51,7 +51,27 @@ public class DispatcherServlet extends HttpServlet {
 		String cp = request.getContextPath();
 		String action = uri.substring(cp.length());
 		
-		ActionForward forward = null;
+		//ActionForward forward = null;
+		// => 이제 HM에게 action 값을 전달, Controller객체를 반환받는다!
+		// -> lookup(검색, 탐색) == 객체를 찾는 행위		
+		Controller controller = handlerMapping.getController(action);
+		
+		// 클라이언트의 요청을 실질적으로 수행하는 controller객체!
+		//그 결과로 "경로"를 리턴!
+		String view = controller.execute(request, response);
+		
+		if(!view.contains(".do")) {
+			view = viewResolver.getView(view);
+		}
+		
+		
+		response.sendRedirect(view);
+		
+		
+		
+		
+		
+		/*
 		// 2) 컨트롤러랑 매핑
 		// 메인창
 		if(action.equals("/main.do")) {
@@ -59,7 +79,7 @@ public class DispatcherServlet extends HttpServlet {
 		}
 		// 로그인
 		else if(action.equals("/login.do")) {
-			forward=new LoginAction().execute(request, response);
+			forward=new LoginController().execute(request, response);
 		}
 		//로그아웃
 		else if(action.equals("/logout.do")) {
@@ -92,7 +112,7 @@ public class DispatcherServlet extends HttpServlet {
 			RequestDispatcher dispatcher= request.getRequestDispatcher(forward.getPath());
 			dispatcher.forward(request, response);
 		}
-	}
+	}*/
 		
 	}
 
