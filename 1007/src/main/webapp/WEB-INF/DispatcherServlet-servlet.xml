@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+         	<prop key="/main.do">main</prop>
+            <prop key="/login.do">login</prop>
+            <prop key="/logout.do">logout</prop>            
+ 			<prop key="/signUp.do">signUp</prop>
+ 			<prop key="/getBoard">getBoard</prop>
+ 			<prop key="/insertBoard.do">insertBoard</prop>        
+         </props>
+      </property>
+   </bean>
+   
+	<bean id="main" class="controller.action.MainController" />
+	<bean id="login" class="controller.action.LoginController" />
+	<bean id="logout" class="controller.action.LogoutController" />
+	<bean id="signUp" class="controller.action.SignUpController" />
+	<bean id="getBoard" class="controller.action.GetBoardController" />
+	<bean id="insertBoard" class="controller.action.InsertBoardController" />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"/>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

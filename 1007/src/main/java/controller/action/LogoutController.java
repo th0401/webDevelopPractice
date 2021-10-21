@@ -1,28 +1,23 @@
 package controller.action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controller.common.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 public class LogoutController implements Controller{
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		
-		
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.invalidate();		
+		ModelAndView mav = new ModelAndView();
 		
-		
-		return "index";
+		mav.setViewName("redirect:index.jsp");
+		return mav;
 	}
 
+	
 }
