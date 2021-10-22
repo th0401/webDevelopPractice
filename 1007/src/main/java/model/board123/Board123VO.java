@@ -8,7 +8,22 @@ public class Board123VO {
 	private String writer;
 	private String content;
 	private Date wdate;
+	private String condition;
+	private String keyword;
 	
+	
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public Date getWdate() {
 		return wdate;
 	}
