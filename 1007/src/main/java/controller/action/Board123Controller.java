@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import model.board123.Board123DAO;
+import model.board123.Board123Service;
 import model.board123.Board123VO;
 
 @Controller
 public class Board123Controller {
 
+	@Autowired
+	private Board123Service boardService;
 	
 	@ModelAttribute("sm")
 	public Map<String,String> searchMap(){

@@ -8,5 +8,8 @@
 </head>
 <body>
 
+
+<a href="login.jsp">로그인 하러가기</a>
+
 </body>
 </html>
