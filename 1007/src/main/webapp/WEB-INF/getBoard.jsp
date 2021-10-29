@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<form action="updateBoardAction.jsp" method="post">
+<form action="updateBoardAction.jsp" method="post" enctype="multipart/form-data">
 	<table border="1">
 	<input type="hidden" value="${data.id}" name="id">
 		<tr>
@@ -19,6 +19,10 @@
 		<tr>
 			<td>글 내용</td>
 			<td><input type="text" name="content" value="${data.content}" readonly></td>
+		</tr>
+		<tr>
+			<td>파일업로드</td>
+			<td><input type="file" name="fileUpload"></td>
 		</tr>		
 	</table>
 </form>

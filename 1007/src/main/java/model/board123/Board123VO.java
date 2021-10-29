@@ -2,6 +2,8 @@ package model.board123;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Board123VO {
 	private int id;
 	private String title;
@@ -10,8 +12,16 @@ public class Board123VO {
 	private Date wdate;
 	private String condition;
 	private String keyword;
+	private MultipartFile fileUpload;
 	
 	
+	
+	public MultipartFile getFileUpload() {
+		return fileUpload;
+	}
+	public void setFileUpload(MultipartFile fileUpload) {
+		this.fileUpload = fileUpload;
+	}
 	public String getCondition() {
 		return condition;
 	}

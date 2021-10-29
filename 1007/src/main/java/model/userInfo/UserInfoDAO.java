@@ -1,4 +1,4 @@
-package model.member123;
+package model.userInfo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,26 +9,26 @@ import org.springframework.stereotype.Repository;
 
 import model.common.JDBC;
 
-@Repository("member123DAO")
-public class Member123DAO {
+@Repository("UserInfoDAO")
+public class UserInfoDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private final String getMember123SQL="select * from member123 where id=? and pw=?";
-	private final String insertSQL="insert into member123 (id,pw,name,role) values(?,?,?,?)";
-	private final String updateSQL="update member123 set pw=?,name=? where id=?";
-	private final String deleteSQL="delete member123 where id=?";
+	private final String loginSQL="select * from Userinfo where id=? and pw=?";
+	private final String insertSQL="insert into Userinfo (id,pw,name,gender) values(?,?,?,?)";
+	private final String updateSQL="update Userinfo set pw=?,name=? ,gender=? where id=?";
+	private final String deleteSQL="delete Userinfo where id=?";
 	
-	public boolean insertMember(Member123VO vo) {
-		System.out.println("dao로 insertMember");
+	public boolean insertUser(UserInfoVO vo) {
+		System.out.println("dao로 insertUserinfo");
 		try {
 			conn=JDBC.getConnection();
 			pstmt=conn.prepareStatement(insertSQL);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPw());
 			pstmt.setString(3, vo.getName());
-			pstmt.setString(4, vo.getRole());
+			pstmt.setString(4, vo.getGender());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,14 +39,15 @@ public class Member123DAO {
 		}
 		return true;
 	}
-	public boolean updateMember(Member123VO vo) {
-		System.out.println("dao로 updateMember");
+	public boolean updateUser(UserInfoVO vo) {
+		System.out.println("dao로 updateUserinfo");
 		try {
 			conn=JDBC.getConnection();
 			pstmt=conn.prepareStatement(updateSQL);
 			pstmt.setString(1, vo.getPw());
 			pstmt.setString(2, vo.getName());
-			pstmt.setString(3, vo.getId());			
+			pstmt.setString(3, vo.getId());
+			pstmt.setString(4, vo.getGender());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,8 +59,8 @@ public class Member123DAO {
 		return true;
 	}
 	
-	public boolean deleteMember(Member123VO vo) {
-		System.out.println("dao로 deleteMember");
+	public boolean deleteUser(UserInfoVO vo) {
+		System.out.println("dao로 deleteUserinfo");
 		try {
 			conn=JDBC.getConnection();
 			pstmt=conn.prepareStatement(deleteSQL);
@@ -77,25 +78,25 @@ public class Member123DAO {
 	
 	
 	
-	public Member123VO getMember(Member123VO vo) {
+	public UserInfoVO login(UserInfoVO vo) {
 		// 로그인에 성공한다면, Member123VO 객체가 리턴(반환)
 		// 실패한다면, 리턴이 null
-		Member123VO data=null;
+		UserInfoVO data=null;
 		
-		System.out.println("Member123DAO로 get");
+		System.out.println("UserinfoDAO로 get");
 
 		try {
 			conn=JDBC.getConnection();
-			pstmt=conn.prepareStatement(getMember123SQL);
+			pstmt=conn.prepareStatement(loginSQL);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getPw());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				data=new Member123VO();
+				data=new UserInfoVO();
 				data.setId(rs.getString("id"));
 				data.setName(rs.getString("name"));
 				data.setPw(rs.getString("pw"));
-				data.setRole(rs.getString("role"));
+				data.setGender(rs.getString("gender"));
 			}
 		}
 		catch (Exception e) {

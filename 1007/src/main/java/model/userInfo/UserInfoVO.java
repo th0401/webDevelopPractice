@@ -1,15 +1,12 @@
-package model.member123;
+package model.userInfo;
 
-public class Member123VO {
+public class UserInfoVO {
 	private String id;
 	private String pw;
 	private String name;
-	private String role;
+	private String gender;
 	
-	@Override
-	public String toString() {
-		return "Meber123VO [id=" + id + ", pw=" + pw + ", name=" + name + ", role=" + role + "]";
-	}
+	
 	public String getPw() {
 		return pw;
 	}
@@ -29,11 +26,17 @@ public class Member123VO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRole() {
-		return role;
+	public String getGender() {
+		return gender;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
+	@Override
+	public String toString() {
+		return "UserInfoVO [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + "]";
+	}
+	
+	
 	
 }

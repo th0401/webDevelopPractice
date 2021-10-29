@@ -155,6 +155,7 @@
         options: optionsBarOrder
       });
     }
+    
     var webAudienceMetricsSatackedData = {
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
       datasets: [
@@ -209,6 +210,7 @@
         fill: false
       },]
     };
+    
     var webAudienceMetricsSatackedOptions = {
       scales: {
         xAxes: [{
@@ -290,7 +292,8 @@
         fill: false
       },]
     };
-    var marketTrendsSatackedOptions = {
+    
+		var marketTrendsSatackedOptions = {
       scales: {
         xAxes: [{
           barPercentage: 0.35,

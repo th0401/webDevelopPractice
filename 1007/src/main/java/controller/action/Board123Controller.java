@@ -1,5 +1,7 @@
 package controller.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.board123.Board123DAO;
 import model.board123.Board123Service;
 import model.board123.Board123VO;
 
 @Controller
+@SessionAttributes("data")
 public class Board123Controller {
 
 	@Autowired
@@ -33,7 +38,7 @@ public class Board123Controller {
 	
 	
 	
-	@RequestMapping("/main.do")
+	/*@RequestMapping("/main.do")
 	public String getBoardList(@RequestParam(value="condition",defaultValue="title",required=false)String condition,@RequestParam(value="keyword",defaultValue="",required=false)String keyword,Board123VO vo,Board123DAO dao,Model model) {
 		System.out.println(condition+": "+keyword);
 		List<Board123VO> datas = dao.getBoardList(new Board123VO());
@@ -42,8 +47,8 @@ public class Board123Controller {
 		//request.setAttribute("datas", datas);
 		model.addAttribute("datas", datas);
 		
-		return "main";
-	}
+		return "main.jsp";
+	}*/
 	
 	
 	// mav로 main을 정의한방법
@@ -101,16 +106,22 @@ public class Board123Controller {
 		// 2. 상속xxx, 추상메서드의 강제성xxx -> 함수의 input output 함수명 변경가능!
 		
 		@RequestMapping("/insertBoard.do")
-		public String insertBoard(HttpServletRequest request,Board123VO vo,Board123DAO dao) {
+		public String insertBoard(HttpServletRequest request,Board123VO vo) throws IllegalStateException, IOException {
 			
-			if(dao.insertBoard(vo)) {
+			
+			MultipartFile fileUpload = vo.getFileUpload();
+			if(!fileUpload.isEmpty()) {
+				String fileName = fileUpload.getOriginalFilename();
+				System.out.println("파일이름: "+fileName);
+				fileUpload.transferTo(new File("C:\\LEE_0622\\"+fileName));
+			}
+			
+			
+			boardService.insertBoard(vo);
 				
 				return "redirect:main.do";	
 			
-			}
-			else {
-				return null;
-			}
+			
 		}
 	
 		

@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
 
-import model.member123.Member123VO;
+import model.userInfo.UserInfoVO;
 
 @Service
 @Aspect
@@ -15,9 +15,9 @@ public class AfterReturningAdvice {
 	public void printLog(JoinPoint jp,Object obj) {
 		String name=jp.getSignature().getName();
 		System.out.println("메서드명: "+name);
-		if(obj instanceof Member123VO) {
-			Member123VO data=(Member123VO)obj;
-			if(data.getRole().equals("ADMIN")) {
+		if(obj instanceof UserInfoVO) {
+			UserInfoVO data=(UserInfoVO)obj;
+			if(data.getGender().equals("ADMIN")) {
 				System.out.println("관리자 로그인");
 			}
 			else {
