@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,11 @@ public class UserInfoController {
 	@RequestMapping("/main.do")
 	public String getAllList(@RequestParam(value="condition",defaultValue="title",required=false)String condition,@RequestParam(value="keyword",defaultValue="",required=false)String keyword,BodyVO vo,Model model) {
 		
-		List<BodyVO> datas = bodyService.selectAll(vo);
+		List<BodyVO> datas = new ArrayList<BodyVO>();
+		
+		if(vo != null) {
+			datas = bodyService.selectAll(vo);
+		}
 		
 		System.out.println(datas);
 		
@@ -77,7 +82,7 @@ public class UserInfoController {
 			System.out.println(data);
 			HttpSession session=request.getSession();
 			session.setAttribute("uVO", data);
-			return "redirect:main.do";
+			return "redirect:main.do?id="+data.getId();
 			
 		}
 		else {

@@ -129,8 +129,8 @@
                 
               </form>
           </c:if>
-          
-          <c:if test="${!empty datas}">
+          <!-- datas가 null이면 안되면서 로그인세션 아이디와 마지막체중VO의 아이디가 같아야한다 -->
+          <c:if test="${!empty datas && uVO.id==lastBodyVO.id}">
           
           <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">

@@ -28,7 +28,7 @@ class BodyRowMapper implements RowMapper<BodyVO>{
 @Repository
 public class SpringBodyDAO {
 
-	private final String sql_SELECT_ALL = "SELECT * FROM body ORDER BY bnum DESC";
+	private final String sql_SELECT_ALL = "SELECT * FROM body WHERE b_user=? ORDER BY bnum DESC";
 	private static String sql_SELECT_ONE = "SELECT * FROM body WHERE bnum=?";
 	private final String sql_INSERT="INSERT INTO body (bnum,height,weight,bdate,b_user) VALUES((SELECT NVL(MAX(bnum),0) + 1 FROM body),?,?,sysdate,?)";
 	private final String sql_UPDATE="UPDATE body SET height=?,weight=? WHERE bnum=?";
@@ -40,9 +40,9 @@ public class SpringBodyDAO {
 
 	public List<BodyVO> selectAll(BodyVO vo) {
 		System.out.println("jdbcTemplate¿∏∑Œ bodySelectAllDAO");
-		
-			return jdbcTemplate.query(sql_SELECT_ALL, new BodyRowMapper());
-		
+		Object[] args= {vo.getB_user()};
+			return jdbcTemplate.query(sql_SELECT_ALL,args, new BodyRowMapper());
+			
 	}
 	
 	public BodyVO selectOne(BodyVO vo) {
