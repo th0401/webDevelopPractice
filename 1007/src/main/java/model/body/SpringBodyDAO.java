@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import model.userInfo.UserInfoVO;
+
 
 
 class BodyRowMapper implements RowMapper<BodyVO>{
@@ -28,19 +30,19 @@ class BodyRowMapper implements RowMapper<BodyVO>{
 @Repository
 public class SpringBodyDAO {
 
-	private final String sql_SELECT_ALL = "SELECT * FROM body WHERE b_user=? ORDER BY bnum DESC";
-	private static String sql_SELECT_ONE = "SELECT * FROM body WHERE bnum=?";
-	private final String sql_INSERT="INSERT INTO body (bnum,height,weight,bdate,b_user) VALUES((SELECT NVL(MAX(bnum),0) + 1 FROM body),?,?,sysdate,?)";
-	private final String sql_UPDATE="UPDATE body SET height=?,weight=? WHERE bnum=?";
-	private final String sql_DELETE="DELETE body WHERE bnum=?";
+	private final String sql_SELECT_ALL = "SELECT * FROM BODY WHERE B_USER=? ORDER BY BNUM DESC";
+	private static String sql_SELECT_ONE = "SELECT * FROM BODY WHERE BNUM=?";
+	private final String sql_INSERT="INSERT INTO BODY (BNUM,HEIGHT,WEIGHT,BDATE,B_USER) VALUES((SELECT NVL(MAX(BNUM),0) + 1 FROM BODY),?,?,SYSDATE,?)";
+	private final String sql_UPDATE="UPDATE BODY SET HEIGHT=?,WEIGHT=? WHERE BNUM=?";
+	private final String sql_DELETE="DELETE BODY WHERE BNUM=?";
 	
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public List<BodyVO> selectAll(BodyVO vo) {
+	public List<BodyVO> selectAll(UserInfoVO vo) {
 		System.out.println("jdbcTemplate¿∏∑Œ bodySelectAllDAO");
-		Object[] args= {vo.getB_user()};
+		Object[] args= {vo.getId()};
 			return jdbcTemplate.query(sql_SELECT_ALL,args, new BodyRowMapper());
 			
 	}

@@ -129,8 +129,8 @@
                 
               </form>
           </c:if>
-          <!-- datas가 null이면 안되면서 로그인세션 아이디와 마지막체중VO의 아이디가 같아야한다 -->
-          <c:if test="${!empty datas && uVO.id==lastBodyVO.id}">
+          
+          <c:if test="${!empty datas}">
           
           <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
@@ -182,6 +182,101 @@
             </div>
            
           </div>
+          
+           <div class="col-lg-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">식단보기,작성</h4>
+                  <p class="card-description">
+                    Add class <code>식단</code>
+                  </p>
+                  <div class="table-responsive pt-3">
+                    
+                    <!-- 식단보여주기,등록,수정 가능 -->
+                    
+                    
+                    <c:if test="">
+                    
+                    </c:if>
+                    <form action="">
+                    <table class="table table-bordered" style="text-align: center;">
+                      <thead>                     
+                        <tr>
+                          <th style="width: 120px">#</th>
+                          <th>식 단</th>                          
+                          <th style="width: 160px">칼로리</th>                          
+                          <th style="width: 200px">시 간</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="table-info">
+                          <td>날 짜</td>
+                          <td colspan="3">
+                           <input type="date">
+                          </td>
+                          
+                        </tr>     
+                        <tr class="table-success">
+                          <td>아 침</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                          </td>
+                          <td>
+                            <input type="number">
+                          </td>
+                          
+                          <td>                          
+                           <input type="time">
+                          </td>
+                        </tr>
+                        <tr class="table-warning">
+                          <td>점 심</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                          </td>
+                          <td>
+                            <input type="number">
+                          </td>
+                          
+                          <td>                          
+                           <input type="time">
+                          </td>
+                        </tr>
+                        <tr class="table-danger">
+                          <td>저 녁</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number">
+                          </td>
+                          
+                          <td>                          
+                           <input type="time">
+                          </td>
+                        </tr>
+                        <tr class="table-primary">
+                          <td>그 외<br>(간식 음료 등)</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number">
+                          </td>
+                          
+                          <td>                          
+                           <input type="time">
+                          </td>
+                        </tr>                                          
+                      </tbody>
+                    </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </c:if>
           
           </c:if>

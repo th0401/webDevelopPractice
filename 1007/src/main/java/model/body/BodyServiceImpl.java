@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.userInfo.UserInfoVO;
+
 @Service("bodyService")
 public class BodyServiceImpl implements BodyService{
 
@@ -12,7 +14,7 @@ public class BodyServiceImpl implements BodyService{
 	private SpringBodyDAO bodyDAO;
 
 	@Override
-	public List<BodyVO> selectAll(BodyVO vo) {
+	public List<BodyVO> selectAll(UserInfoVO vo) {
 		
 		return bodyDAO.selectAll(vo);
 	}

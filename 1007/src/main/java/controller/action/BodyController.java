@@ -2,9 +2,12 @@ package controller.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.body.BodyService;
 import model.body.BodyVO;
+import model.userInfo.UserInfoVO;
 
 @Controller
 public class BodyController {
 
 	@Autowired
 	private BodyService bodyService;
+	
+	private HttpSession session;
 	
 	@RequestMapping("/insertBody.do")
 	public String insertBody(BodyVO vo) {
@@ -75,9 +81,15 @@ public class BodyController {
 	}
 	
 	@RequestMapping("/bodyList.do")
-	public String myPage(BodyVO vo,Model model) {
+	public String myPage(UserInfoVO vo,Model model,HttpServletRequest request) {
 		
-		List<BodyVO> datas = bodyService.selectAll(vo);
+		List<BodyVO> datas = new ArrayList<BodyVO>();
+		session = request.getSession();
+		vo = (UserInfoVO)session.getAttribute("uVO");
+		
+		if(vo != null) {
+			datas = bodyService.selectAll(vo);
+		}
 		
 		System.out.println(datas);
 		

@@ -13,10 +13,31 @@ public class DietVO {
 	private int lunchCalorie;
 	private int dinerCalorie;
 	private int anotherCalorie;
-	private int dayColorie;
+	private int dayCalorie;
+	private Date breakfastDate;
+	private Date lunchDate;
+	private Date dinerDate;
 	private Date ddate;
 	private String d_user;
 	
+	public Date getBreakfastDate() {
+		return breakfastDate;
+	}
+	public void setBreakfastDate(Date breakfastDate) {
+		this.breakfastDate = breakfastDate;
+	}
+	public Date getLunchDate() {
+		return lunchDate;
+	}
+	public void setLunchDate(Date lunchDate) {
+		this.lunchDate = lunchDate;
+	}
+	public Date getDinerDate() {
+		return dinerDate;
+	}
+	public void setDinerDate(Date dinerDate) {
+		this.dinerDate = dinerDate;
+	}
 	public int getDnum() {
 		return dnum;
 	}
@@ -71,11 +92,11 @@ public class DietVO {
 	public void setAnotherCalorie(int anotherCalorie) {
 		this.anotherCalorie = anotherCalorie;
 	}
-	public int getDayColorie() {
-		return dayColorie;
+	public int getDayCalorie() {
+		return dayCalorie;
 	}
-	public void setDayColorie(int dayColorie) {
-		this.dayColorie = dayColorie;
+	public void setDayCalorie(int dayColorie) {
+		this.dayCalorie = dayColorie;
 	}
 	public Date getDdate() {
 		return ddate;
@@ -93,9 +114,11 @@ public class DietVO {
 	public String toString() {
 		return "DietVO [dnum=" + dnum + ", breakfast=" + breakfast + ", lunch=" + lunch + ", diner=" + diner
 				+ ", another=" + another + ", breakfastCalorie=" + breakfastCalorie + ", lunchCalorie=" + lunchCalorie
-				+ ", dinerCalorie=" + dinerCalorie + ", anotherCalorie=" + anotherCalorie + ", dayColorie=" + dayColorie
+				+ ", dinerCalorie=" + dinerCalorie + ", anotherCalorie=" + anotherCalorie + ", dayCalorie=" + dayCalorie
+				+ ", breakfastDate=" + breakfastDate + ", lunchDate=" + lunchDate + ", dinerDate=" + dinerDate
 				+ ", ddate=" + ddate + ", d_user=" + d_user + "]";
 	}
+	
 	
 	
 	

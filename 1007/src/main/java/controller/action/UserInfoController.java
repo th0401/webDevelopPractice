@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import model.body.BodyService;
 import model.body.BodyVO;
+import model.diet.DietService;
+import model.diet.DietVO;
 import model.userInfo.UserInfoService;
 import model.userInfo.UserInfoVO;
 
@@ -27,34 +29,58 @@ public class UserInfoController {
 	@Autowired
 	private BodyService bodyService;
 	
+	@Autowired
+	private DietService dietService;
+	
+	private HttpSession session;
+	
 	@RequestMapping("/main.do")
-	public String getAllList(@RequestParam(value="condition",defaultValue="title",required=false)String condition,@RequestParam(value="keyword",defaultValue="",required=false)String keyword,BodyVO vo,Model model) {
+	public String getAllList(@RequestParam(value="condition",defaultValue="title",required=false)String condition,@RequestParam(value="keyword",defaultValue="",required=false)String keyword,UserInfoVO vo,Model model,HttpServletRequest request) {
 		
-		List<BodyVO> datas = new ArrayList<BodyVO>();
+		List<BodyVO> bodyDatas = new ArrayList<BodyVO>();
+		List<DietVO> dietDatas = new ArrayList<DietVO>();
+		
+		
+		session = request.getSession();
+		vo = (UserInfoVO)session.getAttribute("uVO");
 		
 		if(vo != null) {
-			datas = bodyService.selectAll(vo);
+			bodyDatas = bodyService.selectAll(vo);
+			dietDatas = dietService.selectAll(vo);
 		}
 		
-		System.out.println(datas);
+		System.out.println(bodyDatas);
 		
 		BodyVO lastBodyVO = new BodyVO(); 
-		if(!datas.isEmpty()) {
-			lastBodyVO = datas.get(0);
-		}
+		DietVO lastDietVO = new DietVO();
 		
-		System.out.println(lastBodyVO);
+		if(!bodyDatas.isEmpty()) {
+			lastBodyVO = bodyDatas.get(0);
+		}
+		if(!dietDatas.isEmpty()) {
+			lastDietVO = dietDatas.get(0);
+		}
+		//System.out.println(lastBodyVO);
+		System.out.println(lastDietVO);
+		
 		//request.setAttribute("datas", datas);
 		model.addAttribute("lastBodyVO", lastBodyVO);
-		model.addAttribute("datas", datas);
+		model.addAttribute("lastDietVO", lastDietVO);
 		
 		return "main.jsp";
 	}
 	
 	@RequestMapping("/myPage.do")
-	public String myPage(BodyVO vo,Model model) {
+	public String myPage(UserInfoVO vo,Model model,HttpServletRequest request) {
 		
-		List<BodyVO> datas = bodyService.selectAll(vo);
+		List<BodyVO> datas = new ArrayList<BodyVO>();
+		session = request.getSession();
+		vo = (UserInfoVO)session.getAttribute("uVO");
+		
+		if(vo != null) {
+			datas = bodyService.selectAll(vo);
+		}
+		
 		
 		System.out.println(datas);
 		
@@ -80,9 +106,9 @@ public class UserInfoController {
 		if(data!=null) {
 			
 			System.out.println(data);
-			HttpSession session=request.getSession();
+			session=request.getSession();
 			session.setAttribute("uVO", data);
-			return "redirect:main.do?id="+data.getId();
+			return "redirect:main.do";
 			
 		}
 		else {

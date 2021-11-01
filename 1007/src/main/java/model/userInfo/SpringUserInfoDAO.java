@@ -31,10 +31,10 @@ class UserInfoRowMapper implements RowMapper<UserInfoVO>{
 @Repository
 public class SpringUserInfoDAO {
 
-	private final String loginSQL="select * from Userinfo where id=? and pw=?";
-	private final String insertSQL="insert into Userinfo (id,pw,name,gender) values(?,?,?,?)";
-	private final String updateSQL="update Userinfo set pw=?,name=?,gender=? where id=?";
-	private final String deleteSQL="delete Userinfo where id=?";
+	private final String sql_LOGIN="SELECT * FROM USERINFO WHERE ID=? AND PW=?";
+	private final String sql_INSERT="INSERT INTO USERINFO (ID,PW,NAME,GENDER) VALUES(?,?,?,?)";
+	private final String sql_UPDATE="UPDATE USERINFO SET PW=?,NAME=?,GENDER=? WHERE ID=?";
+	private final String sql_DELETE="DELETE USERINFO WHERE ID=?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -44,7 +44,7 @@ public class SpringUserInfoDAO {
 		Object[] args= {vo.getId(),vo.getPw()};
 
 		try {
-			return jdbcTemplate.queryForObject(loginSQL,args,new UserInfoRowMapper());
+			return jdbcTemplate.queryForObject(sql_LOGIN,args,new UserInfoRowMapper());
 		 }
 		 catch(DataAccessException e){
 			 
@@ -57,19 +57,19 @@ public class SpringUserInfoDAO {
 		System.out.println("jdbcTemplate·Î insertUserInfo");
 		
 		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender()};
-		jdbcTemplate.update(insertSQL,args);
+		jdbcTemplate.update(sql_INSERT,args);
 	}
 	
 	public void updateUser(UserInfoVO vo) {
 		System.out.println("jdbcTemplate·Î updateUserInfo");
 		Object[] args= {vo.getPw(),vo.getName(),vo.getId()};
-		jdbcTemplate.update(updateSQL,args);
+		jdbcTemplate.update(sql_UPDATE,args);
 		
 	}
 	
 	public void deleteUser(UserInfoVO vo) {
 		System.out.println("jdbcTemplate·Î deleteUserInfo");
-		jdbcTemplate.update(deleteSQL,vo.getId());
+		jdbcTemplate.update(sql_DELETE,vo.getId());
 	}
 	
 	

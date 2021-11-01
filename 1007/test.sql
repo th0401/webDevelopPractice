@@ -7,15 +7,18 @@ CREATE TABLE userInfo(
 
 CREATE TABLE diet(
 	dnum int primary key,
-	breakfast varchar(1500),
-	lunch varchar(1500),
-	diner varchar(1500),
+	breakfast varchar(1500) default null,
+	lunch varchar(1500) default null,
+	diner varchar(1500) default null,
 	breakfastCalorie int default 0,
 	lunchCalorie int default 0,
 	dinerCalorie int default 0,
 	dayCalorie int default 0,
 	another varchar(1500),
 	anotherCalorie int default 0,
+	breakfastDate date default null,
+	lunchDate date default null,
+	dinerDate date default null,
 	ddate date default sysdate,
 	d_user varchar(200),	
 	foreign key (d_user) references userInfo(id) on delete cascade
