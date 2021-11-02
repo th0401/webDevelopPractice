@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao">
+
+
+	
+	  <!-- SQL문 실행결과와 자바객체(VO)를 연결해주는 매퍼(Mapper) -->
+   <!-- <resultMap type="board" id="boardResult">
+      <result property="title" column="TITLE" />
+   </resultMap> -->
+
+
+	<insert id="insertBoard123">
+	<![CDATA[
+		INSERT INTO BOARD123 (ID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(ID),0)+1 FROM BOARD123),#{title},#{writer},#{content})
+	]]>
+	</insert>
+	
+	<update id="updateBoard123">
+	<![CDATA[
+		UPDATE BOARD123 SET TITLE=#{title},CONTENT=#{content} WHERE ID=#{id}
+	]]>
+	</update>
+	
+	<delete id="deleteBoard123">
+	<![CDATA[
+		DELETE BOARD123 WHERE ID=#{id}
+	]]>
+	</delete>
+	
+	
+	<select id="getBoard123List" resultType="board123">
+	<![CDATA[
+		SELECT * FROM BOARD123 ORDER BY ID DESC
+	]]>
+	</select>
+	
+	<select id="getBoard123" resultType="board123">
+	<if test="condition=='TITLE'"></if>
+	<if test="condition=='WRITER'"></if>
+		SELECT * FROM BOARD123 WHERE ID=#{ID}
+	
+	</select>
+	<!-- 검색버전 -->
+	<!-- <select id="getBoardList" resultType="board">
+      SELECT * FROM BOARD WHERE 1=1
+      <if test="condition=='TITLE'">
+         AND TITLE LIKE '%'||#{keyword}||'%'
+      </if>
+      <if test="condition=='WRITER'">
+         AND WRITER LIKE '%'||#{keyword}||'%'
+      </if>
+      ORDER BY ID DESC
+   </select> -->
+
+
+
+
+
+</mapper>
