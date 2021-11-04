@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="myBatis">
+	
+	<class>model.board123.Board123JPAVO</class>
+		<!--  하지않아도 테이블 어노테이션을 보고 하기 때문에, 작동이 된다. 
+       하지만 모두 다 확인해야하기 때문에 수행속도가 느리고 안 될 수도 있다. -->
+<!--  등록을 권장하는 바다. -->
+		
+		<properties>
+			<!-- 필수속성 -->
+			
+         <!-- 중요한 옵션!!! sql문을 자동생성하기 위해 있는 설정 (어떤 언어인지를 알아야하기 때문에 dialect로 해줌)-->
+         <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+         <!-- Mysql 설정 -->
+         <!-- org.hibernate.dialect.MySQLDialect -->
+			<!-- 옵션속성 -->
+			<property name="hibernate.show_sql" value="true"/>
+         	<property name="hibernate.hbm2ddl.auto" value="update"/>
+         	<!-- create: 매번 새로 테이블 생성 -->
+         	<!-- create-drop: 매번 새로 테이블 생성, 종료직전에 drop -->
+         	<!-- update: 기존 테이블 유지 -->
+		</properties>
+	</persistence-unit>
+</persistence>
