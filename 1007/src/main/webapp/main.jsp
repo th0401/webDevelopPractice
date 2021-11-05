@@ -7,6 +7,7 @@
 
 <head>
 <script src="js/Common.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
   <!-- Required meta tags --> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,6 +28,27 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <style type="text/css">
+  .displNone{
+  	display:none;
+  }
+  .dietInsBtn{
+  float:right; 
+  font-size:20px; 
+  width: 150px; 
+  height: 51px;
+  }
+  
+  </style>
+  <script type="text/javascript">
+          
+          const jbd=[
+        	  <c:forEach var="jbd" items="${jbd}">
+        	  	${jbd},
+        	  </c:forEach>
+          ];
+          //console.log(jbd);
+          </script>
 </head>
 <body>
   <div class="container-scroller">
@@ -110,7 +132,7 @@
           </c:if>
           
           <c:if test="${uVO!=null}">
-          <c:if test="${empty datas}">
+          <c:if test="${empty bodyDatas}">
           	<form class="pt-3" method="post" action="insertBody.do">
           	<input type="hidden" name="b_user" value="${uVO.id}">
                 <div class="form-group">
@@ -130,7 +152,7 @@
               </form>
           </c:if>
           
-          <c:if test="${!empty datas}">
+          <c:if test="${!empty bodyDatas}">
           
           <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
@@ -171,19 +193,21 @@
                 
               </form>
             </div>
-          <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
+         
+            <div class="col-lg-12 stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Area chart</h4>
-                  <canvas id="areaChart"></canvas>
+                  <canvas id="areaChart" style="height:30vh; width:50vw"></canvas>
                 </div>
               </div>
             </div>
            
-          </div>
           
-           <div class="col-lg-12 stretch-card">
+          </c:if>
+    <c:if test="${empty dietDatas}">
+    	<!-- 식단보여주기,등록,수정 가능 -->
+          <div class="col-lg-12 stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">식단보기,작성</h4>
@@ -191,101 +215,171 @@
                     Add class <code>식단</code>
                   </p>
                   <div class="table-responsive pt-3">
-                    
-                    <!-- 식단보여주기,등록,수정 가능 -->
-                    
-                    
-                    <c:if test="">
-                    
-                    </c:if>
-                    <form action="">
+         
+                    <form action="insertDiet.do" method="post">
+                    <input type="hidden" name="d_user" value="${uVO.id}">
                     <table class="table table-bordered" style="text-align: center;">
                       <thead>                     
                         <tr>
                           <th style="width: 120px">#</th>
                           <th>식 단</th>                          
-                          <th style="width: 160px">칼로리</th>                          
-                          <th style="width: 200px">시 간</th>
+                          <th style="width: 160px">칼로리</th>                                                   
                         </tr>
                       </thead>
                       <tbody>
-                      <tr class="table-info">
+                       <tr class="table-info">
                           <td>날 짜</td>
                           <td colspan="3">
-                           <input type="date">
+                           <input type="date" name="ddate" required > 
                           </td>
                           
                         </tr>     
                         <tr class="table-success">
                           <td>아 침</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="breakfast" required>-</textarea>
                           </td>
                           <td>
-                            <input type="number">
+                            <input type="number" name="breakfastCalorie" value="0"required>
                           </td>
-                          
-                          <td>                          
-                           <input type="time">
-                          </td>
+                        
                         </tr>
                         <tr class="table-warning">
                           <td>점 심</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="lunch" required>-</textarea>
                           </td>
                           <td>
-                            <input type="number">
+                            <input type="number" name="lunchCalorie" value="0"required>
                           </td>
                           
-                          <td>                          
-                           <input type="time">
-                          </td>
                         </tr>
                         <tr class="table-danger">
                           <td>저 녁</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="diner" required>-</textarea>
                           </td>
                           
                           <td>
-                            <input type="number">
+                            <input type="number" name="dinerCalorie" value="0" required>
                           </td>
-                          
-                          <td>                          
-                           <input type="time">
-                          </td>
+                      
                         </tr>
                         <tr class="table-primary">
                           <td>그 외<br>(간식 음료 등)</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="another" required>-</textarea>
                           </td>
                           
                           <td>
-                            <input type="number">
+                            <input type="number" name="anotherCalorie" value="0" required>
                           </td>
                           
-                          <td>                          
-                           <input type="time">
-                          </td>
+                          <td>
+                         <input type="submit" class="dietInsBtn btn btn-info" value="등록하기">
+                        </td>
                         </tr>                                          
                       </tbody>
                     </table>
-                    </form>
+                    <br>
+                    
+                   
+                    </form>                   
                   </div>
                 </div>
               </div>
             </div>
-          </c:if>
+    </c:if>
+    <c:if test="${!empty dietDatas}">
+          <!-- 식단보여주기,등록,수정 가능 -->
+          <div class="col-lg-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">식단보기,작성</h4>
+                  <p class="card-description">
+                    Add class <code>식단</code>
+                  </p>
+                  <div class="table-responsive pt-3">
+         
+                    <form action="insertDiet.do" method="post">
+                    <input type="hidden" name="d_user" value="${uVO.id}">
+                    <table class="table table-bordered" style="text-align: center;">
+                      <thead>                     
+                        <tr>
+                          <th style="width: 120px">#</th>
+                          <th>식 단</th>                          
+                          <th style="width: 160px">칼로리</th>                                                   
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr class="table-info">
+                          <td>날 짜</td>
+                          <td colspan="3">
+                           <input type="date" name="ddate" id="currentDate" value="${lastDietVO.ddate}" readonly required> 
+                          </td>
+                          
+                        </tr>     
+                        <tr class="table-success">
+                          <td>아 침</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="breakfast" readonly required>${lastDietVO.breakfast}</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="breakfastCalorie"  value="${lastDietVO.breakfastCalorie}" readonly required>
+                          </td>
+                        
+                        </tr>
+                        <tr class="table-warning">
+                          <td>점 심</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="lunch" readonly required>${lastDietVO.lunch}</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="lunchCalorie" value="${lastDietVO.lunchCalorie}" readonly  required>
+                          </td>
+                          
+                        </tr>
+                        <tr class="table-danger">
+                          <td>저 녁</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="diner" readonly required>${lastDietVO.diner}</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="dinerCalorie" value="${lastDietVO.dinerCalorie}" readonly required>
+                          </td>
+                      
+                        </tr>
+                        <tr class="table-primary">
+                          <td>그 외<br>(간식 음료 등)</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="another" readonly required>${lastDietVO.another}</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="anotherCalorie" value="${lastDietVO.anotherCalorie}" readonly required>
+                          </td>
+                         
+                        </tr>                                          
+                      </tbody>
+                    </table>
+                    <br>
+                   <!-- <button type="submit" class="dietInsBtn btn btn-info" onclick="location.href='insertDiet.do'">등록하기</button> -->
+                    
+                    </form>                   
+                  </div>
+                </div>
+              </div>
+            </div>
+           </c:if><!-- !empty dietDatas if닫는 테그 --> 
+           </c:if><!-- 로그인 if닫는테그 -->
           
-          </c:if>
           
-          
-          
-        
-          
-          
+ 			
+ 			
+ 			<!-- json 데이터를 위한 코드 -->
+          <c:forEach var="jbd" items="${jbd}"></c:forEach>         
+    
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -316,7 +410,7 @@
   <script src="js/template.js"></script>
   <!-- endinject -->
   <!-- plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
+   <script src="vendors/chart.js/Chart.min.js"></script> 
   <script src="vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->

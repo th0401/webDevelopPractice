@@ -62,16 +62,10 @@
                       <thead>
                         <tr>
                      
-                          <th>
-                            체중
-                          </th>
-                          <th>
-                            키
-                          </th>
+                          <th>체중</th>
+                          <th>키</th>
                  
-                          <th>
-                            날짜
-                          </th>
+                          <th>날짜</th>
                           <th>
                             
                           </th>
@@ -81,14 +75,15 @@
                         </tr>
                       </thead>
                       <c:set var="index" value="0" />
-                      <c:forEach var="bl" items="${datas}">
+                      <c:forEach var="bl" items="${BodyList}">
                       
                       <tbody>
-                      <div id="body${index}">
+                       
                      <form method="post" action="updateBody.do">
+                    
                      <input type="hidden" name="bnum" value="${bl.bnum}" id="bnum${index}">
                      <input type="hidden" name="b_user" value="${bl.b_user}" id="b_user${index}">
-                       <tr>                          
+                       <tr id="body${index}">                          
                           <td>
                             <p id="pBodyWeight${index}">${bl.weight} kg</p>
                             <input type="hidden" class="form-control" name="weight" value="${bl.weight}" id="bodyWeight${index}" placeholder="체중을 입력하세요" required>
@@ -111,12 +106,16 @@
                             <button type="button" class="btn btn-light" onclick="bdEditCancle(${index})" id="bdCancleBtn${index}" style="visibility: hidden;">취소</button>
                           </td>
                         </tr>
+                        
                      </form>
-                     </div>
+                     
                       </tbody>
+                      
                       <c:set var="index" value="${index+1}" />                     
                       </c:forEach>
                     </table>
+                    <br>
+                    <mytag:paging pagingIndex="${pagingIndex}" isFirst="${isFirst}" isLast="${isLast}" url="bodyList.do" />
                     
                   </div>
                 </div>

@@ -84,7 +84,7 @@ function bdEditFinish(index){
 function bdDelete(index, bnum){ 
 	result = confirm("해당 기록을 삭제하시겠어요?");
 	if (result == true) {
-		var params = "bnum="+bnum+"&index="+index;
+		var params = "bnum="+bnum;
 		console.log(index, bnum);
 		$.ajax({
 			type:"post",
@@ -93,11 +93,11 @@ function bdDelete(index, bnum){
 			dataType:"json",
 			success:function(data){ 
 				
-				var body = document.querySelector("#body"+index);
-				console.log("이태호"+body);
+				//var body = document.querySelector("#body"+index);
+				//console.log("이태호"+body);
 				
-					body.remove(); // 데이터 삭제
-					
+					//body.remove(); // 데이터 삭제
+					$("#body"+index).remove();
 				
 			}
 		});
@@ -105,4 +105,25 @@ function bdDelete(index, bnum){
 	} else {
 		return;
 	}
+}
+function ChangeProfile(){
+	window.open("ChangeProfile.jsp","프로필사진변경","width=800px,height=600px");
+}
+//사진미리보기 js
+$(function() {
+    $("#filename").on('change', function(){
+        readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.filename = input.files[0].name;
+       reader.onload = function (e) {
+    	   console.log(e.target.filename);
+    	   $('#uploadfilename').attr('value', e.target.filename); 
+    	   $('#preImage').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
 }

@@ -23,7 +23,8 @@ class UserInfoRowMapper implements RowMapper<UserInfoVO>{
 		data.setName(rs.getString("name"));
 		data.setPw(rs.getString("pw"));
 		data.setGender(rs.getString("gender"));
-
+		data.setPath(rs.getString("path"));
+	
 		return data;
 	}
 }
@@ -32,15 +33,15 @@ class UserInfoRowMapper implements RowMapper<UserInfoVO>{
 public class SpringUserInfoDAO {
 
 	private final String sql_LOGIN="SELECT * FROM USERINFO WHERE ID=? AND PW=?";
-	private final String sql_INSERT="INSERT INTO USERINFO (ID,PW,NAME,GENDER) VALUES(?,?,?,?)";
-	private final String sql_UPDATE="UPDATE USERINFO SET PW=?,NAME=?,GENDER=? WHERE ID=?";
+	private final String sql_INSERT="INSERT INTO USERINFO (ID,PW,NAME,GENDER,PATH) VALUES(?,?,?,?,?)";
+	private final String sql_UPDATE="UPDATE USERINFO SET PW=?,NAME=?,GENDER=?, PATH=? WHERE ID=?";
 	private final String sql_DELETE="DELETE USERINFO WHERE ID=?";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public UserInfoVO login(UserInfoVO vo) {
-		System.out.println("jdbcTemplate으로 loginDAO");
+		//System.out.println("jdbcTemplate으로 loginDAO");
 		Object[] args= {vo.getId(),vo.getPw()};
 
 		try {
@@ -54,21 +55,21 @@ public class SpringUserInfoDAO {
 	}
 	
 	public void insertUser(UserInfoVO vo) {
-		System.out.println("jdbcTemplate로 insertUserInfo");
+		//System.out.println("jdbcTemplate로 insertUserInfo");
 		
-		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender()};
+		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender(),vo.getPath()};
 		jdbcTemplate.update(sql_INSERT,args);
 	}
 	
 	public void updateUser(UserInfoVO vo) {
-		System.out.println("jdbcTemplate로 updateUserInfo");
+		//System.out.println("jdbcTemplate로 updateUserInfo");
 		Object[] args= {vo.getPw(),vo.getName(),vo.getId()};
 		jdbcTemplate.update(sql_UPDATE,args);
 		
 	}
 	
 	public void deleteUser(UserInfoVO vo) {
-		System.out.println("jdbcTemplate로 deleteUserInfo");
+		//System.out.println("jdbcTemplate로 deleteUserInfo");
 		jdbcTemplate.update(sql_DELETE,vo.getId());
 	}
 	

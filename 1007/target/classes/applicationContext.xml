@@ -35,6 +35,7 @@
 
 
 
+
 <!-- <bean class="com.lee.app.common.AfterAdvice" id="aAdvice"></bean>
 <bean class="com.lee.app.common.AroundAdvice" id="aroundAdvice"></bean>
  -->
@@ -64,4 +65,10 @@
 			<aop:around method="printLog" pointcut-ref="bPointcut"/>
 		</aop:aspect>
 	</aop:config> -->
+	
+	
+	
+	
+	
+	
 </beans>

@@ -1,24 +1,22 @@
 CREATE TABLE userInfo(
-	id varchar(30) primary key,
-	pw varchar(30) not null,
-	name varchar(30),
-	gender varchar(30)
+	id varchar(300) primary key,
+	pw varchar(300) not null,
+	name varchar(300),
+	gender varchar(300),
+	path varchar(4000)	
 );
 
 CREATE TABLE diet(
 	dnum int primary key,
-	breakfast varchar(1500) default null,
-	lunch varchar(1500) default null,
-	diner varchar(1500) default null,
+	breakfast varchar(1500),
+	lunch varchar(1500),
+	diner varchar(1500),
 	breakfastCalorie int default 0,
 	lunchCalorie int default 0,
 	dinerCalorie int default 0,
 	dayCalorie int default 0,
 	another varchar(1500),
 	anotherCalorie int default 0,
-	breakfastDate date default null,
-	lunchDate date default null,
-	dinerDate date default null,
 	ddate date default sysdate,
 	d_user varchar(200),	
 	foreign key (d_user) references userInfo(id) on delete cascade
@@ -36,22 +34,25 @@ CREATE TABLE body(
 );
 
 
-
+INSERT INTO BODY (BNUM,HEIGHT,WEIGHT,BDATE,B_USER) VALUES(10,10,100,'2021-11-03','leeth0401');
 /* SELECT ALL */
 select * from all_tables;
 select * from userInfo;
-select * from diet;
 select * from body;
+select * from diet;
+
 
 SELECT NVL(MAX(pnum),0 + 1) FROM post;
 /* 테이블 삭제 */
 drop table userInfo CASCADE CONSTRAINTS;
-drop table diet CASCADE CONSTRAINTS;
 drop table body CASCADE CONSTRAINTS;
+drop table diet CASCADE CONSTRAINTS;
 
 INSERT INTO diet (dnum,breakfast,lunch,diner,another,breakfastCalorie,lunchCalorie,dinerCalorie,anotherCalorie,dayCalorie,ddate,d_user) values(3,'빵,스프','','치킨','과자,콜라','',200,2000,600,4300,sysdate,'leeth0401');
 
 DELETE FROM body WHERE bnum=1;
+DELETE FROM diet WHERE dnum=1;
+
 /* 테스트용 예시 데이터 */
 insert into userInfo (id, pw, name) values('admin','123','관리자');
 insert into post (pnum, views, plike, category, title, content, writer, p_user, path)

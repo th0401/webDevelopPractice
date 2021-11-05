@@ -1,5 +1,6 @@
 package controller.action;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +25,21 @@ public class DietController {
 	private HttpSession session;
 	
 	
-	@RequestMapping("insertDiet.do")
-	public String insertDiet(DietVO vo) {
+	@RequestMapping("/insertDiet.do")
+	public String insertDiet(DietVO vo,HttpServletRequest request) {
+		
 		System.out.println("insertDiet ÄÁÆ®·Ñ·¯¿È!");
+		//System.out.println(vo);
+		
+		//Date date = vo.getDdate();
+		System.out.println(vo.getDdate());
 		
 		dietService.insertDiet(vo);
 		
 		return "redirect:main.do";
 	}
 	
-	@RequestMapping("updateDiet.do")
+	@RequestMapping("/updateDiet.do")
 	public String updateDiet(DietVO vo) {
 		System.out.println("updateDiet ÄÁÆ®·Ñ·¯¿È!");
 		
@@ -42,7 +48,7 @@ public class DietController {
 		return null;
 	}
 	
-	@RequestMapping("deleteDiet.do")
+	@RequestMapping("/deleteDiet.do")
 	public String deleteDiet(DietVO vo) {
 		System.out.println("deleteDiet ÄÁÆ®·Ñ·¯¿È!");
 		
@@ -51,7 +57,7 @@ public class DietController {
 		return null;
 	}
 	
-	@RequestMapping("dietList.do")
+	@RequestMapping("/dietList.do")
 	public String myDiet(UserInfoVO vo,Model model,HttpServletRequest request) {
 		
 		List<DietVO> datas = new ArrayList<DietVO>();

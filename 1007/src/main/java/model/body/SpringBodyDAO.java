@@ -41,14 +41,14 @@ public class SpringBodyDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public List<BodyVO> selectAll(UserInfoVO vo) {
-		System.out.println("jdbcTemplate으로 bodySelectAllDAO");
+		//System.out.println("jdbcTemplate으로 bodySelectAllDAO");
 		Object[] args= {vo.getId()};
 			return jdbcTemplate.query(sql_SELECT_ALL,args, new BodyRowMapper());
 			
 	}
 	
 	public BodyVO selectOne(BodyVO vo) {
-		System.out.println("jdbcTemplate으로 bodySelectOneDAO");
+		//System.out.println("jdbcTemplate으로 bodySelectOneDAO");
 		
 		Object[] args= {vo.getBnum()};
 		
@@ -58,21 +58,21 @@ public class SpringBodyDAO {
 	
 	
 	public void insertBody(BodyVO vo) {
-		System.out.println("jdbcTemplate로 insertBody");
+		//System.out.println("jdbcTemplate로 insertBody");
 		
 		Object[] args= {vo.getHeight(),vo.getWeight(),vo.getB_user()};
 		jdbcTemplate.update(sql_INSERT,args);
 	}
 	
 	public void updateBody(BodyVO vo) {
-		System.out.println("jdbcTemplate로 updateBody");
+		//System.out.println("jdbcTemplate로 updateBody");
 		Object[] args= {vo.getHeight(),vo.getWeight(),vo.getBnum()};
 		jdbcTemplate.update(sql_UPDATE,args);
 		
 	}
 	
 	public void deleteBody(BodyVO vo) {
-		System.out.println("jdbcTemplate로 deleteBody");
+		//System.out.println("jdbcTemplate로 deleteBody");
 		jdbcTemplate.update(sql_DELETE,vo.getBnum());
 	}
 	

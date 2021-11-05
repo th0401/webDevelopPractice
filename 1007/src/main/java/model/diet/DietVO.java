@@ -14,29 +14,25 @@ public class DietVO {
 	private int dinerCalorie;
 	private int anotherCalorie;
 	private int dayCalorie;
-	private Date breakfastDate;
-	private Date lunchDate;
-	private Date dinerDate;
 	private Date ddate;
 	private String d_user;
 	
-	public Date getBreakfastDate() {
-		return breakfastDate;
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "DietVO [dnum=" + dnum + ", breakfast=" + breakfast + ", lunch=" + lunch + ", diner=" + diner
+				+ ", another=" + another + ", breakfastCalorie=" + breakfastCalorie + ", lunchCalorie=" + lunchCalorie
+				+ ", dinerCalorie=" + dinerCalorie + ", anotherCalorie=" + anotherCalorie + ", dayCalorie=" + dayCalorie
+				+ ", ddate=" + ddate + ", d_user=" + d_user + "]";
 	}
-	public void setBreakfastDate(Date breakfastDate) {
-		this.breakfastDate = breakfastDate;
+	public Date getDdate() {
+		return ddate;
 	}
-	public Date getLunchDate() {
-		return lunchDate;
-	}
-	public void setLunchDate(Date lunchDate) {
-		this.lunchDate = lunchDate;
-	}
-	public Date getDinerDate() {
-		return dinerDate;
-	}
-	public void setDinerDate(Date dinerDate) {
-		this.dinerDate = dinerDate;
+	public void setDdate(Date ddate) {
+		this.ddate = ddate;
 	}
 	public int getDnum() {
 		return dnum;
@@ -98,26 +94,15 @@ public class DietVO {
 	public void setDayCalorie(int dayColorie) {
 		this.dayCalorie = dayColorie;
 	}
-	public Date getDdate() {
-		return ddate;
-	}
-	public void setDdate(Date ddate) {
-		this.ddate = ddate;
-	}
+	
 	public String getD_user() {
 		return d_user;
 	}
 	public void setD_user(String d_user) {
 		this.d_user = d_user;
 	}
-	@Override
-	public String toString() {
-		return "DietVO [dnum=" + dnum + ", breakfast=" + breakfast + ", lunch=" + lunch + ", diner=" + diner
-				+ ", another=" + another + ", breakfastCalorie=" + breakfastCalorie + ", lunchCalorie=" + lunchCalorie
-				+ ", dinerCalorie=" + dinerCalorie + ", anotherCalorie=" + anotherCalorie + ", dayCalorie=" + dayCalorie
-				+ ", breakfastDate=" + breakfastDate + ", lunchDate=" + lunchDate + ", dinerDate=" + dinerDate
-				+ ", ddate=" + ddate + ", d_user=" + d_user + "]";
-	}
+	
+	
 	
 	
 	

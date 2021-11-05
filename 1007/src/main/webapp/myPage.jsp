@@ -6,6 +6,8 @@
 <html lang="ko">
 
 <head>
+<script src="js/Common.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,6 +59,21 @@
                   <p class="card-description">
                     Basic form elements
                   </p>
+                  <div class="user-profile">
+          <div class="user-image" style="text-align:center;">
+            <img src="${uVO.path}" alt="${uVO.name}님의 프로필(워너비?)사진" width="250px" height="250px">
+            <br>
+            <br>
+            <button type="button" class="btn btn-outline-secondary btn-icon-text" onclick="ChangeProfile()">
+                          사진변경
+                          <i class="mdi mdi-file-check btn-icon-append"></i>                          
+                        </button>
+          </div>
+          
+         
+          <br>
+          <br>
+        </div>
                   <form class="forms-sample" action="deleteUser.do" method="post">
                     <div class="form-group">
                       <label for="exampleInputName1">ID</label>
