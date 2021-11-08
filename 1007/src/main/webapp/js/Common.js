@@ -1,4 +1,6 @@
 
+// 내가 만든 js페이지
+
 // 사용자 확인시 동작기능
 function checkAlert(uri, text) {
 	result = confirm(text);
@@ -7,7 +9,8 @@ function checkAlert(uri, text) {
 	} else {
 		return;
 	}
-}    
+}   
+//=================================================== main.jsp===================================================
 
 function insertBody(){ // 등록버튼 클릭시 등록폼이 보이게하는 기능
 
@@ -21,9 +24,91 @@ function insertBodyCancle(){ // 취소버튼 클릭시 등록폼이 사라지게
 	$('#inBodyBtn').css('visibility','');
 }	 
 
+function insertMainDiet(){ // 등록버튼 클릭시 등록폼이 보이게하는 기능
+
+	$('#recentMainDietForm').addClass('displNone');
+	$('#insertMainDietForm').removeClass('displNone');
+
+}	 
+
+function insertMainDietCancle(){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
+
+	$('#recentMainDietForm').removeClass('displNone');
+	$('#insertMainDietForm').addClass('displNone');
+
+}	 
+
+function updateMainDiet(){
+	$('#updateDietMainForm').removeClass('displNone');
+	$('#recentMainDietForm').addClass('displNone');
+	
+}
+
+function updateMainDietCancle(){
+	$('#updateDietMainForm').addClass('displNone');
+	$('#recentMainDietForm').removeClass('displNone');
+	
+}
+
+function dietEditFinish(){ 
+	
+	var dnum = $("#ufdn").val();
+	var ddate = $("#ufdd").val();
+	
+	var breakfast = $("#ufb").val().replaceAll("??", "⁇").replaceAll("&","＆").replaceAll("%","％")
+	.replaceAll("+","＋").replaceAll("\\", "￦");
+	var lunch = $("#ufl").val().replaceAll("??", "⁇").replaceAll("&","＆").replaceAll("%","％")
+	.replaceAll("+","＋").replaceAll("\\", "￦");
+	var diner = $("#ufd").val().replaceAll("??", "⁇").replaceAll("&","＆").replaceAll("%","％")
+	.replaceAll("+","＋").replaceAll("\\", "￦");
+	var another = $("#ufa").val().replaceAll("??", "⁇").replaceAll("&","＆").replaceAll("%","％")
+	.replaceAll("+","＋").replaceAll("\\", "￦");
+	
+	var bCalorie = $("#ufbc").val();
+	var lCalorie = $("#uflc").val();
+	var dCalorie = $("#ufdc").val();
+	var aCalorie = $("#ufac").val();
+	
+	
+	var params = "dnum="+dnum+"&ddate="+ddate+
+	"&breakfast="+breakfast+"&lunch="+lunch+"&diner="+diner+"&another="+another+
+	"&breakfastCalorie="+bCalorie+"&lunchCalorie="+lCalorie+"&dinerCalorie="+dCalorie+
+	"&anotherCalorie="+aCalorie;
+  //console.log(params);
+
+	$.ajax({
+		type:"post",
+		url:"updateDietMain.do",
+		data:params,
+		dataType:"json",
+		success:function(args){
+			$('#updateDietMainForm').addClass('displNone');
+			$('#recentMainDietForm').removeClass('displNone');			
+			
+			console.log(args[0].ddate);
+			console.log(args[0].breakfastCalorie);
+			console.log(args[0].lunchCalorie);
+			console.log(args[0].dinerCalorie);
+			console.log(args[0].anotherCalorie);
+			console.log(args[0].dayCalorie);			
+			
+			$("#fdd").val(args[0].ddate);
+			$("#fb").text(args[0].breakfast);
+			$("#fbc").val(args[0].breakfastCalorie);
+			$("#fl").text(args[0].lunch);
+			$("#flc").val(args[0].lunchCalorie);
+			$("#fd").text(args[0].diner);
+			$("#fdc").val(args[0].dinerCalorie);
+			$("#fa").text(args[0].another);
+			$("#fac").val(args[0].anotherCalorie);
+			$("#fAllC").val(args[0].dayCalorie);
+		}
+	})
+}
+// =================================================== BodyList.jsp=================================================== 
 
 function bdEdit(index){ 
-	console.log("이태호 들어옴?? "+index);
+	//console.log("이태호 들어옴?? "+index);
 	$('#bdEditBtn'+index).css('visibility','hidden');
 	$('#bdDeleteBtn'+index).css('visibility','hidden');
 	$('#bodyWeight'+index).attr('type','text');
@@ -106,11 +191,31 @@ function bdDelete(index, bnum){
 		return;
 	}
 }
+
+
+//=================================================== myPage.jsp===================================================
 function ChangeProfile(){
 	window.open("ChangeProfile.jsp","프로필사진변경","width=800px,height=600px");
 }
-//사진미리보기 js
-$(function() {
+
+function updateBtn(id1,id2){ // 정보변경 버튼 클릭시 등록폼이 보이게하는 기능
+	//console.log(id1+" : "+id2);
+	$("#"+id1).addClass('displNone');
+	$("#"+id2).removeClass('displNone');
+	
+}	 
+
+function updateCancleBtn(id1,id2){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
+
+	$("#"+id1).removeClass('displNone');
+	$("#"+id2).addClass('displNone');
+}	 
+
+
+//=================================================== changeProfile.jsp===================================================
+
+
+$(function() {		//사진미리보기 js
     $("#filename").on('change', function(){
         readURL(this);
     });

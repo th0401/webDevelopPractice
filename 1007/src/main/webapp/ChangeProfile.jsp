@@ -5,8 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/Common.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script src="js/Common.js"></script>
+<script type="text/javascript">
+
+$("#file1").on('change',function(){
+	console.log("재밋네 js");
+	  var fileName = $("#file1").val();
+	  $(".upload-name").val(fileName);
+	});
+
+</script>
   <!-- Required meta tags --> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -90,9 +99,9 @@
 					<br>
 					<div class="filebox">
 						<label for="filename">파일찾기</label>
-					    <input class="upload-name" id="uploadfilename" value="첨부파일" placeholder="첨부파일" readonly>					    
-						<input type="file" class="displNone"name="filename1" id="filename" onchange="readImage(event)">
-						</div>					
+					    <input class="upload-name" id="uploadfilename"  value="첨부파일" placeholder="첨부파일" readonly>					    
+						<input type="file" class="displNone"  name="FileUpload" id="filename" onchange="readImage(event)">
+						</div>	
 					
 						<br>
 						<br>

@@ -43,8 +43,8 @@ public class SpringDietDAO {
 	private static String sql_SELECT_ALL = "SELECT * FROM DIET WHERE D_USER=? ORDER BY DNUM DESC";
 	private static String sql_SELECT_ONE = "SELECT * FROM DIET WHERE DNUM=?"; 
 	private static String sql_INSERT = "INSERT INTO DIET (DNUM,BREAKFAST,LUNCH,DINER,ANOTHER,BREAKFASTCALORIE,LUNCHCALORIE,DINERCALORIE,ANOTHERCALORIE,DAYCALORIE,DDATE,D_USER) VALUES((SELECT NVL(MAX(DNUM),0) + 1 FROM DIET),?,?,?,?,?,?,?,?,?,?,?)";
-	private static String sql_UPDATE = "UPDATE DIET SET BREAKFAST=?, LUNCH=?, DINER=?,ANOTHER=?, BREAKFASTCALORIE, LUNCHCALORIE=?, DINERCALORIE=?, DAYCOLORIE=?, DDATE=? WHERE DNUM=?";
-	private static String sql_DELETE = "DELETE * FROM DIET WHERE DNUM=?";
+	private static String sql_UPDATE = "UPDATE DIET SET BREAKFAST=?, LUNCH=?, DINER=?,ANOTHER=?, BREAKFASTCALORIE=?, LUNCHCALORIE=?, DINERCALORIE=?,ANOTHERCALORIE=?, DAYCALORIE=?, DDATE=? WHERE DNUM=?";
+	private static String sql_DELETE = "DELETE DIET WHERE DNUM=?";
 	
 	
 	@Autowired
@@ -84,7 +84,8 @@ public class SpringDietDAO {
 	
 	public void deleteDiet(DietVO vo) {
 		System.out.println("jdbcTemplate·Î deleteDiet");
-		jdbcTemplate.update(sql_DELETE,vo.getDnum());
+		Object[] args= {vo.getDnum()};
+		jdbcTemplate.update(sql_DELETE,args);
 	}
 	
 	

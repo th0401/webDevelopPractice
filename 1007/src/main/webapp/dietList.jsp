@@ -11,7 +11,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>bodyList</title>
+  <title>dietList</title>
   <!-- base:css -->
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/feather/feather.css">
@@ -62,59 +62,50 @@
                       <thead>
                         <tr>
                      
-                          <th>#</th>
+                          <th>날짜 </th>
+                          <th>아침</th>
+                          <th>점심</th>
+                          <th>저녁</th>
+                          <th>기타</th>
                           <th>총 칼로리</th>
-                 
-                          <th>날짜</th>
-                          <th>
-                            
-                          </th>
-                          <th>
-                            
-                          </th>
                         </tr>
                       </thead>
-                      <c:set var="index" value="0" />
-                      <c:forEach var="bl" items="${datas}">
                       
-                      <tbody>
-                       
-                     <form method="post" action="updateBody.do">
-                    
-                     <input type="hidden" name="bnum" value="${bl.bnum}" id="bnum${index}">
-                     <input type="hidden" name="b_user" value="${bl.b_user}" id="b_user${index}">
-                       <tr id="body${index}">                          
+                      <c:forEach var="dl" items="${DietList}">                     
+                      <tbody>                    
+                     <input type="hidden" name="dnum" value="${dl.dnum}" >            
+                       <tr>                          
                           <td>
-                            <p id="pBodyWeight${index}">${bl.weight} kg</p>
-                            <input type="hidden" class="form-control" name="weight" value="${bl.weight}" id="bodyWeight${index}" placeholder="체중을 입력하세요" required>
+                            <p>${dl.ddate}</p>
                           </td>
                           
                           <td>
-                            <p id="pBodyHeight${index}">${bl.height} cm</p>
-                            <input type="hidden" class="form-control" name="height" value="${bl.height}" id="bodyHeight${index}" placeholder="키를 입력하세요" required>
+                          <p>${dl.breakfastCalorie} kcal</p>
+                          </td>
+                          
+                          <td>
+                          <p>${dl.breakfastCalorie} kcal</p>
+                          </td>
+                          
+                          <td>
+                          <p>${dl.lunchCalorie} kcal</p>  
                           </td>
                           <td>
-                           <p>${bl.bdate}</p>
-                           <input type="hidden" class="form-control" name="bdate" value="${bl.bdate}" id="bdate${index}">
+                          <p>${dl.dinerCalorie} kcal</p>  
                           </td>
                           <td>
-                            <button type="button" class="btn btn-info" onclick="bdEdit('${index}')" id="bdEditBtn${index}">수정</button>
-                            <button type="button" class="btn btn-info" onclick="bdEditFinish(${index})" id="bdinsertBtn${index}" style="visibility: hidden;">등록</button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-light" onclick="bdDelete('${index}', '${bl.bnum}')" id="bdDeleteBtn${index}">삭제</button>
-                            <button type="button" class="btn btn-light" onclick="bdEditCancle(${index})" id="bdCancleBtn${index}" style="visibility: hidden;">취소</button>
+                            <p style="display:inline; font-size:18px;">${dl.dayCalorie} kcal</p><button type="button" class="btn btn-outline-info btn-fw"  
+                            onclick="location.href='getDietData.do?dnum=${dl.dnum}'" style="float:right;">세부정보</button>
+                           
                           </td>
                         </tr>
-                        
-                     </form>
                      
-                      </tbody>
-                      
-                      <c:set var="index" value="${index+1}" />                     
+                      </tbody>                     
+                                           
                       </c:forEach>
                     </table>
-                    
+                    <br>
+                    <mytag:paging pagingIndex="${pagingIndex}" isFirst="${isFirst}" isLast="${isLast}" url="dietList.do" />
                   </div>
                 </div>
               </div>

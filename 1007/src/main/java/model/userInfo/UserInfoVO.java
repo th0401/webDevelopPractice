@@ -8,7 +8,7 @@ public class UserInfoVO {
 	private String name;
 	private String gender;
 	private String path;
-	private MultipartFile fileUpload;
+	private MultipartFile FileUpload;
 	
 	
 	
@@ -45,16 +45,17 @@ public class UserInfoVO {
 		this.gender = gender;
 	}
 	public MultipartFile getFileUpload() {
-		return fileUpload;
+		return FileUpload;
 	}
 	public void setFileUpload(MultipartFile fileUpload) {
-		this.fileUpload = fileUpload;
+		FileUpload = fileUpload;
 	}
 	@Override
 	public String toString() {
 		return "UserInfoVO [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", path=" + path
-				+ ", fileUpload=" + fileUpload + "]";
+				+ ", FileUpload=" + FileUpload + "]";
 	}
+	
 	
 	
 	

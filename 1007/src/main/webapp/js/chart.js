@@ -5,14 +5,27 @@ $(function() {
    */
   'use strict';
 // 차트 
+  var datedatas = [];
+  var weightdatas = [];
+    
+  // 데이터분리 코드
+  $.each(jbd, function(inx, obj) {
+	  datedatas.push(obj.date);
+	  weightdatas.push(obj.weight);     
+  });
   
   
+  
+  //[jbd[0].date,jbd[1].date,jbd[2].date,jbd[3].date,jbd[4].date,jbd[5].date,jbd[6].date]
+  //[jbd[0].weight,jbd[1].weight,jbd[2].weight,jbd[3].weight,jbd[4].weight,jbd[5].weight,jbd[6].weight]
+  //console.log("datas : "+datedatas);
+  //console.log("weight : "+weightdatas);
   var areaData = {
 		  
-    labels: [jbd[0].date,jbd[1].date,jbd[2].date,jbd[3].date,jbd[4].date,jbd[5].date,jbd[6].date,],
+    labels: datedatas,
     datasets: [{
       label: '체중',//
-      data: [jbd[0].weight,jbd[1].weight,jbd[2].weight,jbd[3].weight,jbd[4].weight,jbd[5].weight,jbd[6].weight],
+      data: weightdatas,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',

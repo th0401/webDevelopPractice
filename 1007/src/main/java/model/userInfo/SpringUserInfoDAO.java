@@ -34,9 +34,9 @@ public class SpringUserInfoDAO {
 
 	private final String sql_LOGIN="SELECT * FROM USERINFO WHERE ID=? AND PW=?";
 	private final String sql_INSERT="INSERT INTO USERINFO (ID,PW,NAME,GENDER,PATH) VALUES(?,?,?,?,?)";
-	private final String sql_UPDATE="UPDATE USERINFO SET PW=?,NAME=?,GENDER=?, PATH=? WHERE ID=?";
+	private final String sql_UPDATE="UPDATE USERINFO SET PW=?,NAME=?,GENDER=? WHERE ID=?";
 	private final String sql_DELETE="DELETE USERINFO WHERE ID=?";
-
+	private final String sql_UPDATE_PROFILE="UPDATE USERINFO SET PATH=? WHERE ID=?";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -57,13 +57,13 @@ public class SpringUserInfoDAO {
 	public void insertUser(UserInfoVO vo) {
 		//System.out.println("jdbcTemplate·Î insertUserInfo");
 		
-		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender(),vo.getPath()};
+		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender()};
 		jdbcTemplate.update(sql_INSERT,args);
 	}
 	
 	public void updateUser(UserInfoVO vo) {
 		//System.out.println("jdbcTemplate·Î updateUserInfo");
-		Object[] args= {vo.getPw(),vo.getName(),vo.getId()};
+		Object[] args= {vo.getPw(),vo.getName(),vo.getGender(),vo.getId()};
 		jdbcTemplate.update(sql_UPDATE,args);
 		
 	}
@@ -73,7 +73,11 @@ public class SpringUserInfoDAO {
 		jdbcTemplate.update(sql_DELETE,vo.getId());
 	}
 	
-	
+	public void updateProfile(UserInfoVO vo) {
+		System.out.println("jdbcTemplate·Î updateProfile");
+		Object[] args= {vo.getPath(),vo.getId()};
+		jdbcTemplate.update(sql_UPDATE_PROFILE,args);
+	}
 	
 	
 

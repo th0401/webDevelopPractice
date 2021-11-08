@@ -1,4 +1,4 @@
-package controller.action;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -94,7 +94,7 @@ public class BodyController {
 			datas = bodyService.selectAll(uVO);
 			
 			// 페이징 처리 로직
-			String url="main.jsp";	
+			String url="bodyList.jsp";	
 			String indexx=request.getParameter("index");
 			int index=1;
 			if(indexx!=null){
@@ -135,4 +135,26 @@ public class BodyController {
 		
 		return "bodyList.jsp";
 	}
+	
+	// myPage에서 최신 body정보만 변경하는 엑션 spa 활용안함!
+		@RequestMapping("/updateRecentBody.do")
+		public String updateRecentBody(BodyVO vo,HttpServletResponse response) {
+			System.out.println("updateRecentBody 컨트롤옴!");
+			
+			bodyService.updateBody(vo);
+			
+			return "redirect:myPage.do";
+		}
+	
+	// myPage에서 최신 body정보만 삭제하는 엑션 spa 활용안함!
+	@RequestMapping("/deleteRecentBody.do")
+	public String deleteRecentBody(BodyVO vo,HttpServletResponse response) {
+		System.out.println("deleteRecentBody 컨트롤옴!");
+		
+		bodyService.deleteBody(vo);
+		
+		return "redirect:myPage.do";
+	}
+	
+	
 }

@@ -25,6 +25,14 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <style type="text/css">
+  .displNone{
+  	display:none;
+  }
+  .hiddenBtn{
+  visibility: hidden;
+  }
+  </style>
 </head>
 
 <body>
@@ -57,11 +65,13 @@
                 <div class="card-body">
                   <h4 class="card-title">계정정보</h4>
                   <p class="card-description">
-                    Basic form elements
+                    회원정보 : ID , PW , Name<br>
+          최신 바디정보 : Height , Weight          
                   </p>
                   <div class="user-profile">
           <div class="user-image" style="text-align:center;">
             <img src="${uVO.path}" alt="${uVO.name}님의 프로필(워너비?)사진" width="250px" height="250px">
+            <!-- <p>${uVO.path}</p> -->
             <br>
             <br>
             <button type="button" class="btn btn-outline-secondary btn-icon-text" onclick="ChangeProfile()">
@@ -74,7 +84,7 @@
           <br>
           <br>
         </div>
-                  <form class="forms-sample" action="deleteUser.do" method="post">
+                  <form class="forms-sample" action="deleteUser.do" method="post" id="userInfoForm">
                     <div class="form-group">
                       <label for="exampleInputName1">ID</label>
                       <input type="text" class="form-control" id="exampleInputName1" value="${uVO.id}" readonly>
@@ -88,16 +98,74 @@
                       <label for="exampleInputName1">Gender</label>
                         <input type="text" class="form-control" id="exampleInputName1" value="${uVO.gender}" readonly>
                       </div>
+                    <button type="button" class="btn btn-danger mr-2" id="updateUserInfoBtn" onclick="updateBtn('userInfoForm','updateUserInfoForm')">회원정보 변경</button>                               
+                    <button class="btn btn-light" onclick="checkAlert('deleteUser.do?id=${uVO.id}','회원탈퇴 하시겠습니까?')">회원탈퇴</button>
+                  </form>
+                  
+                  
+                  
+                  
+                  <!-- 회원정보 변경 폼 -->
+                  <form class="forms-sample displNone" action="updateUser.do" method="post" id="updateUserInfoForm">
+                    <input type="hidden" class="form-control" id="exampleInputName1" name="id" value="${uVO.id}" >
+                    <input type="hidden" class="form-control" id="exampleInputName1" name="pw" value="${uVO.pw}" >
+                    
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" name="name" id="exampleInputName1" value="${uVO.name}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputName1">Gender</label>
+                        <select class="form-control" name="gender">
+                      	<option ${uVO.gender=='man' ? 'selected':'' }>man</option>
+                      	<option ${uVO.gender=='woman' ? 'selected':'' }>woman</option>
+                      </select>
+                      </div>
+					       	
+                    <button type="submit" class="btn btn-danger mr-2">변경하기</button>
+                    <button type="button" class="btn btn-light" id="updateUserInfoCancleBtn" onclick="updateCancleBtn('userInfoForm','updateUserInfoForm')">수정취소</button>                                                         
+                  </form>
+                  
+                  
+                  
+                  <br><br>
+                  
+                  <!-- 최신 바디정보 폼 -->
+                  <form class="forms-sample" action="deleteUser.do" method="post" id="bodyForm">
+                  <input type="hidden" name="bnum" value="${lastBodyVO.bnum}">                   
+                    <div class="form-group">
+                      <label for="exampleInputName1">측정날짜</label>
+                      <input type="text" class="form-control" id="exampleInputName1" value="${lastBodyVO.bdate}" readonly>
+                    </div>
                     <div class="form-group">
                       <label for="exampleInputName1">height</label>
                       <input type="text" class="form-control" id="exampleInputName1" value="${lastBodyVO.height} cm" readonly>
                     </div><div class="form-group">
                       <label for="exampleInputName1">weight</label>
                       <input type="text" class="form-control" id="exampleInputName1" value="${lastBodyVO.weight} kg" readonly>
-                    </div>
-               
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>                    
-                    <button class="btn btn-light" onclick="checkAlert('deleteUser.do?id=${uVO.id}','회원탈퇴 하시겠습니까?')">회원탈퇴</button>
+                    </div>            
+                    <button type="button" class="btn btn-success mr-2" onclick="updateBtn('bodyForm','updateBodyForm')">최신 바디정보 변경</button>
+                    <button type="button" class="btn btn-light" onclick="checkAlert('deleteRecentBody.do?bnum=${lastBodyVO.bnum}','최신 바디정보를 삭제하시겠어요?')">최신 바디정보 삭제</button>                                       
+                  </form>
+                  
+                  <!-- 최신 바디정보 변경폼 -->
+                  <form class="forms-sample displNone" action="updateRecentBody.do" method="post" id="updateBodyForm">
+                  <input type="hidden" name="bnum" value="${lastBodyVO.bnum}">
+                  
+                  <div class="form-group">
+                      <label for="exampleInputName1">등록날짜</label>
+                      <input type="date" class="form-control" id="exampleInputName1" value="${lastBodyVO.bdate}" readonly>
+                    </div>                   
+                    <div class="form-group">
+                      <label for="exampleInputName1">height</label>
+                      <input type="number" class="form-control" id="exampleInputName1" name="height" value="${lastBodyVO.height}" required>
+                    </div><div class="form-group">
+                      <label for="exampleInputName1">weight</label>
+                      <input type="number" class="form-control" id="exampleInputName1" name="weight" value="${lastBodyVO.weight}" required>
+                    </div>            
+                    <button  class="btn btn-success mr-2">최신 바디정보 변경</button>
+                    <button type="button" class="btn btn-light" onclick="updateCancleBtn('bodyForm','updateBodyForm')">수정취소</button>                                       
                   </form>
                 </div>
               </div>

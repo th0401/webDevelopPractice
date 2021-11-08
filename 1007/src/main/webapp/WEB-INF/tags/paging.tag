@@ -17,7 +17,7 @@
 	</c:choose>	
 	&nbsp;&nbsp;&nbsp; 
 	<c:forEach var="pa" items="${pagingIndex}">
-          <button type="button" class="btn btn-outline-secondary active" onclick="location.href='${url}?index=${pa}'">${pa}</button>
+          <button type="button" class="btn btn-outline-secondary" onclick="location.href='${url}?index=${pa}'">${pa}</button>
     </c:forEach> 
 	&nbsp;&nbsp;&nbsp;	
 	<c:choose>			

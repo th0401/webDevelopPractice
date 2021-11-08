@@ -30,4 +30,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 		userInfoDAO.deleteUser(vo);
 		
 	}
+
+	@Override
+	public void updateProfile(UserInfoVO vo) {
+		userInfoDAO.updateProfile(vo);
+		
+	}
 }

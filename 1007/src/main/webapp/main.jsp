@@ -38,7 +38,15 @@
   width: 150px; 
   height: 51px;
   }
-  
+  .textAlignC{
+  text-align:center;
+  }
+  .hiddenBtn{
+  visibility: hidden;
+  }
+  .marginLeft{
+  margin-left: 30px;
+  }
   </style>
   <script type="text/javascript">
           
@@ -47,6 +55,7 @@
         	  	${jbd},
         	  </c:forEach>
           ];
+          //jbd[0],jbd[1],jbd[2]
           //console.log(jbd);
           </script>
 </head>
@@ -181,7 +190,7 @@
                   <input type="text" class="form-control form-control-lg" name="weight" id="exampleInputEmail1" placeholder="몸무게를 입력하세요" required>
                 </div>
                 <div class="mt-3">
-                <button type="submit" class="btn btn-info btn-lg btn-block" >
+                <button type="submit" class="btn btn-info btn-lg btn-block marginLeft" >
                       <i class="mdi mdi-account"></i>                      
                       등록하기
                     </button>
@@ -216,6 +225,7 @@
                   </p>
                   <div class="table-responsive pt-3">
          
+         		<!-- 최초식단등록 폼 -->
                     <form action="insertDiet.do" method="post">
                     <input type="hidden" name="d_user" value="${uVO.id}">
                     <table class="table table-bordered" style="text-align: center;">
@@ -223,7 +233,7 @@
                         <tr>
                           <th style="width: 120px">#</th>
                           <th>식 단</th>                          
-                          <th style="width: 160px">칼로리</th>                                                   
+                          <th style="width: 160px">칼로리(kcal)</th>                                                   
                         </tr>
                       </thead>
                       <tbody>
@@ -274,16 +284,12 @@
                           <td>
                             <input type="number" name="anotherCalorie" value="0" required>
                           </td>
-                          
-                          <td>
-                         <input type="submit" class="dietInsBtn btn btn-info" value="등록하기">
-                        </td>
-                        </tr>                                          
-                      </tbody>
+                        
+                        </tr>                                                               
+                      </tbody>                     
                     </table>
-                    <br>
-                    
-                   
+                     <br>
+                    <button type="submit" class="dietInsBtn btn btn-info">등록하기</button>                  	
                     </form>                   
                   </div>
                 </div>
@@ -301,72 +307,222 @@
                   </p>
                   <div class="table-responsive pt-3">
          
-                    <form action="insertDiet.do" method="post">
-                    <input type="hidden" name="d_user" value="${uVO.id}">
-                    <table class="table table-bordered" style="text-align: center;">
+                    
+                    <div id="recentMainDietForm">
+                    <table class="table table-bordered" style="text-align: center;" >
                       <thead>                     
                         <tr>
                           <th style="width: 120px">#</th>
                           <th>식 단</th>                          
-                          <th style="width: 160px">칼로리</th>                                                   
+                          <th style="width: 160px">칼로리(kcal)</th>                                                   
                         </tr>
                       </thead>
                       <tbody>
                        <tr class="table-info">
                           <td>날 짜</td>
                           <td colspan="3">
-                           <input type="date" name="ddate" id="currentDate" value="${lastDietVO.ddate}" readonly required> 
+                           <input type="date" name="ddate" id="fdd" value="${lastDietVO.ddate}" readonly required> 
                           </td>
                           
                         </tr>     
                         <tr class="table-success">
                           <td>아 침</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="breakfast" readonly required>${lastDietVO.breakfast}</textarea>
+                            <textarea class="form-control" id="fb" rows="4" name="breakfast" readonly required>${lastDietVO.breakfast}</textarea>
                           </td>
                           <td>
-                            <input type="number" name="breakfastCalorie"  value="${lastDietVO.breakfastCalorie}" readonly required>
+                            <input type="text" name="breakfastCalorie" id="fbc" value="${lastDietVO.breakfastCalorie}  kcal" readonly required>
                           </td>
                         
                         </tr>
                         <tr class="table-warning">
                           <td>점 심</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="lunch" readonly required>${lastDietVO.lunch}</textarea>
+                            <textarea class="form-control" id="fl" rows="4" name="lunch" readonly required>${lastDietVO.lunch}</textarea>
                           </td>
                           <td>
-                            <input type="number" name="lunchCalorie" value="${lastDietVO.lunchCalorie}" readonly  required>
+                            <input type="text" name="lunchCalorie" id="flc" value="${lastDietVO.lunchCalorie}  kcal" readonly  required>
                           </td>
                           
                         </tr>
                         <tr class="table-danger">
                           <td>저 녁</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="diner" readonly required>${lastDietVO.diner}</textarea>
+                            <textarea class="form-control" id="fd" rows="4" name="diner" readonly required>${lastDietVO.diner}</textarea>
                           </td>
                           
                           <td>
-                            <input type="number" name="dinerCalorie" value="${lastDietVO.dinerCalorie}" readonly required>
+                            <input type="text" name="dinerCalorie" id="fdc" value="${lastDietVO.dinerCalorie}  kcal" readonly required>
                           </td>
                       
                         </tr>
                         <tr class="table-primary">
                           <td>그 외<br>(간식 음료 등)</td>
                           <td>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="another" readonly required>${lastDietVO.another}</textarea>
+                            <textarea class="form-control" id="fa" rows="4" name="another" readonly required>${lastDietVO.another}</textarea>
                           </td>
                           
                           <td>
-                            <input type="number" name="anotherCalorie" value="${lastDietVO.anotherCalorie}" readonly required>
+                            <input type="text" name="anotherCalorie" id="fac" value="${lastDietVO.anotherCalorie} kcal" readonly required>
                           </td>
                          
-                        </tr>                                          
+                        </tr> 
+                        <tr class="table-info">
+                          <td>총 칼로리</td>
+                          <td colspan="2">
+                           <input type="text" name="dayCalorie" id="fAllC" class="form-control textAlignC" value="하루 총  칼로리양은 ${lastDietVO.dayCalorie} kcal입니다!" readonly required> 
+                          </td>
+                          
+                        </tr>                                            
                       </tbody>
                     </table>
                     <br>
-                   <!-- <button type="submit" class="dietInsBtn btn btn-info" onclick="location.href='insertDiet.do'">등록하기</button> -->
+                   <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="insertMainDiet()" style="width: 170px;">새로 등록하기</button>
+                   <button type="button" class="dietInsBtn btn btn-info" onclick="updateMainDiet()">수정하기</button>
+                  </div>
+                  <!-- 식단수정 폼 -->
+                   
+                   <div id="updateDietMainForm" class="displNone">
+                   <form method="post">
+                   <input type="hidden" name="dnum" id="ufdn" value="${lastDietVO.dnum}">
+                   <table class="table table-bordered" style="text-align: center;" id="recentMainDietForm">
+                   
+                      <thead>                     
+                        <tr>
+                          <th style="width: 120px">#</th>
+                          <th>식 단</th>                          
+                          <th style="width: 160px">칼로리(kcal)</th>                                                   
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                       <tr class="table-info">
+                          <td>날 짜</td>
+                          <td colspan="3">
+                           <input type="date" name="ddate" id="ufdd" value="${lastDietVO.ddate}" required> 
+                          </td>
+                          
+                        </tr>     
+                        <tr class="table-success">
+                          <td>아 침</td>
+                          <td>
+                            <textarea class="form-control" id="ufb" rows="4" name="breakfast"  required>${lastDietVO.breakfast}</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="breakfastCalorie" id="ufbc" value="${lastDietVO.breakfastCalorie}"  required>
+                          </td>
+                        
+                        </tr>
+                        <tr class="table-warning">
+                          <td>점 심</td>
+                          <td>
+                            <textarea class="form-control" id="ufl" rows="4" name="lunch" required>${lastDietVO.lunch}</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="lunchCalorie" id="uflc" value="${lastDietVO.lunchCalorie}"   required>
+                          </td>
+                          
+                        </tr>
+                        <tr class="table-danger">
+                          <td>저 녁</td>
+                          <td>
+                            <textarea class="form-control" id="ufd" rows="4" name="diner"  required>${lastDietVO.diner}</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="dinerCalorie" id="ufdc" value="${lastDietVO.dinerCalorie}"  required>
+                          </td>
+                      
+                        </tr>
+                        <tr class="table-primary">
+                          <td>그 외<br>(간식 음료 등)</td>
+                          <td>
+                            <textarea class="form-control" id="ufa" rows="4" name="another"  required>${lastDietVO.another}</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="anotherCalorie" id="ufac" value="${lastDietVO.anotherCalorie}"  required>
+                          </td>
+                         
+                        </tr> 
+                                                                 
+                      </tbody>
+                    </table>
+                    </form>
+                    <br>
+                    <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="updateMainDietCancle()" id="insertMainDietBtn" style="width: 170px;">취소하기</button>
+                   <button type="button" class="dietInsBtn btn btn-info" onclick="dietEditFinish()">수정하기</button>
+                   </div>
+                   
                     
-                    </form>                   
+                    <form action="insertDiet.do" method="post" id="insertMainDietForm" class="displNone">
+                    <input type="hidden" name="d_user" value="${uVO.id}">
+                    <table class="table table-bordered" style="text-align: center;">
+                      <thead>                     
+                        <tr>
+                          <th style="width: 120px">#</th>
+                          <th>식 단</th>                          
+                          <th style="width: 160px">칼로리(kcal)</th>                                                   
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <tr class="table-info">
+                          <td>날 짜</td>
+                          <td colspan="3">
+                           <input type="date" name="ddate" required > 
+                          </td>
+                          
+                        </tr>     
+                        <tr class="table-success">
+                          <td>아 침</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="breakfast" required>-</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="breakfastCalorie" value="0"required>
+                          </td>
+                        
+                        </tr>
+                        <tr class="table-warning">
+                          <td>점 심</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="lunch" required>-</textarea>
+                          </td>
+                          <td>
+                            <input type="number" name="lunchCalorie" value="0"required>
+                          </td>
+                          
+                        </tr>
+                        <tr class="table-danger">
+                          <td>저 녁</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="diner" required>-</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="dinerCalorie" value="0" required>
+                          </td>
+                      
+                        </tr>
+                        <tr class="table-primary">
+                          <td>그 외<br>(간식 음료 등)</td>
+                          <td>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="another" required>-</textarea>
+                          </td>
+                          
+                          <td>
+                            <input type="number" name="anotherCalorie" value="0" required>
+                          </td>
+                        
+                        </tr>                                                               
+                      </tbody>                     
+                    </table>
+                     <br>
+                     <button type="button" class="dietInsBtn btn btn-info marginLeft"onclick="insertMainDietCancle()">취소하기</button> 
+                     <button type="submit" class="dietInsBtn btn btn-info">등록하기</button>
+                                                
+                    </form>  
+                                       
                   </div>
                 </div>
               </div>
@@ -377,8 +533,10 @@
           
  			
  			
- 			<!-- json 데이터를 위한 코드 -->
-          <c:forEach var="jbd" items="${jbd}"></c:forEach>         
+ 			<%-- <!-- json 데이터를 위한 코드 -->
+          <c:forEach var="jbd" items="${jbd}">
+          ${jbd}
+          </c:forEach>   --%>       
     
         </div>
         <!-- content-wrapper ends -->

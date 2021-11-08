@@ -1,8 +1,9 @@
-package controller.action;
+package controller;
 
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class UserInfoController {
 	private DietService dietService;
 
 	private HttpSession session;
-	private String path = "C:\\Users\\taeho\\git\\webDevelopPractice\\1007\\src\\main\\webapp\\images\\profile\\";
+	private String path = "C:\\LEE_0622\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\1007\\images\\profile\\";
 	
 	
 	
@@ -81,7 +82,7 @@ public class UserInfoController {
 				}
 			}else if(bodyDatas.size()!=0 && bodyDatas.size() < 7) {
 				// 데이터의 크기만큼만 포문을 돌린다!
-				for(int i = 0; i<bodyDatas.size()-1; i++) {
+				for(int i = 0; i<bodyDatas.size(); i++) {
 					// 제이슨데이터를 계속 만드는 이유는 제이슨 데이터를 갱신해서 이 데이터들을 arrJson에 넣기위함이다!
 					jsonBodyData = new JSONObject(); 			
 				
@@ -175,15 +176,15 @@ public class UserInfoController {
 		}
 
 
-		System.out.println(datas);
+		//System.out.println(datas);
 
 		BodyVO lastBodyVO = new BodyVO(); 
 		if(!datas.isEmpty()) {
-			System.out.println("데이터 0번째 : "+datas.get(0));
+			//System.out.println("데이터 0번째 : "+datas.get(0));
 			lastBodyVO = datas.get(0);
 		}
 
-		System.out.println("라스트바디VO는 : "+lastBodyVO);
+		//System.out.println("라스트바디VO는 : "+lastBodyVO);
 		//request.setAttribute("datas", datas);
 		model.addAttribute("lastBodyVO", lastBodyVO);
 		model.addAttribute("datas", datas);
@@ -192,10 +193,10 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/login.do")
-	public String login(HttpServletRequest request,UserInfoVO vo) {
+	public String login(HttpServletRequest request,UserInfoVO vo,HttpServletResponse response) {
 		//System.out.println("id: "+request.getParameter("id")+", pw: "+request.getParameter("pw"));
 		UserInfoVO data = userInfoService.login(vo);
-
+		PrintWriter out;
 		if(data!=null) {
 
 			//System.out.println(data);
@@ -205,8 +206,17 @@ public class UserInfoController {
 
 		}
 		else {
-			System.out.println(data);
-			return"login.jsp";
+			//System.out.println(data);
+						
+			try {
+				response.setContentType("text/html; charset=UTF-8"); 
+				out = response.getWriter();
+				out.println("<script>alert('로그인에 실패하셨습니다. 아이디 혹은 비밀번호를 확인해주세요.');  history.go(-1); </script>");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null; // 전송페이지가 없으므로, null처리
 
 			// DS -> HM -> C -> VR
 		}
@@ -244,9 +254,13 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/updateProfile.do")
-	public String updateProfile(UserInfoVO vo) {
+	public String updateProfile(UserInfoVO vo,HttpServletResponse response,HttpServletRequest request) {
+		session = request.getSession();
+		//System.out.println(vo);
+		UserInfoVO uVo = (UserInfoVO)session.getAttribute("uVO");
+		vo.setId(uVo.getId());
 		MultipartFile fileupload = vo.getFileUpload();
-		System.out.println(fileupload);
+		System.out.println("프로필컨트롤러 파일업로드이름 : "+fileupload);
 		
 		 String fileName = fileupload.getOriginalFilename();
          String filename2 = vo.getId()+fileName.substring(fileName.length()-4,fileName.length()); //확장자
@@ -266,13 +280,32 @@ public class UserInfoController {
 		e.printStackTrace();
 	}
 		
-		userInfoService.updateUser(vo);
-		
+		userInfoService.updateProfile(vo);
+		PrintWriter out;
+		uVo.setPath(vo.getPath());
+			try {
+				out = response.getWriter();
+				out.println("<script>opener.location.reload();</script>");
+				out.println("<script>window.close();</script>");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+
 		return null;
 		
 	}
 	
-	
+	@RequestMapping("/updateUser.do")
+	public String updateUserInfo(HttpSession session,HttpServletRequest request,UserInfoVO vo) {
+		System.out.println(vo);
+		userInfoService.updateUser(vo);
+		UserInfoVO data = userInfoService.login(vo);
+		session = request.getSession();
+		session.setAttribute("uVO", data);
+
+		return "redirect:myPage.do";
+	}
 	
 	
 	@RequestMapping("/deleteUser.do")
@@ -283,8 +316,6 @@ public class UserInfoController {
 		//System.out.println("회원탈퇴입니다!");
 
 		return "redirect:main.do";
-
-
 	}
 
 
