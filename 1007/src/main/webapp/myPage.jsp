@@ -76,7 +76,7 @@
             <br>
             <button type="button" class="btn btn-outline-secondary btn-icon-text" onclick="ChangeProfile()">
                           사진변경
-                          <i class="mdi mdi-file-check btn-icon-append"></i>                          
+                          <i class="icon-image btn-icon-append"></i>                          
                         </button>
           </div>
           
@@ -99,7 +99,7 @@
                         <input type="text" class="form-control" id="exampleInputName1" value="${uVO.gender}" readonly>
                       </div>
                     <button type="button" class="btn btn-danger mr-2" id="updateUserInfoBtn" onclick="updateBtn('userInfoForm','updateUserInfoForm')">회원정보 변경</button>                               
-                    <button class="btn btn-light" onclick="checkAlert('deleteUser.do?id=${uVO.id}','회원탈퇴 하시겠습니까?')">회원탈퇴</button>
+                    <button type="button" class="btn btn-light" onclick="checkAlert('deleteUser.do?id=${uVO.id}','회원탈퇴 하시겠습니까?')">회원탈퇴</button>
                   </form>
                   
                   

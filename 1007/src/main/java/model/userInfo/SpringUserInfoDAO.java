@@ -57,7 +57,7 @@ public class SpringUserInfoDAO {
 	public void insertUser(UserInfoVO vo) {
 		//System.out.println("jdbcTemplate·Î insertUserInfo");
 		
-		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender()};
+		Object[] args= {vo.getId(),vo.getPw(),vo.getName(),vo.getGender(),vo.getPath()};
 		jdbcTemplate.update(sql_INSERT,args);
 	}
 	

@@ -8,6 +8,7 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
+        <!-- 검색창
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
@@ -19,7 +20,7 @@
               <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
             </div>
           </li>
-        </ul>
+        </ul> -->
         <ul class="navbar-nav navbar-nav-right">
         
         

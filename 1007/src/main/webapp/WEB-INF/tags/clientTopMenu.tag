@@ -9,6 +9,7 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
+        <!-- 검색창
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
             <div class="input-group">
@@ -20,55 +21,20 @@
               <input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
             </div>
           </li>
-        </ul>
+        </ul> -->
         <ul class="navbar-nav navbar-nav-right">
-        
-        
-             <li class="nav-item dropdown d-lg-flex d-none">
-            	<p>${uVO.name}님 환영해요!</p>
-            	</li>
-            
+   
           <li class="nav-item dropdown d-flex">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="icon-air-play mx-0"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow">
-                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    The meeting is cancelled
-                  </p>
-                </div>
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Body/Diet</p>
+              <a class="dropdown-item preview-item" href="bodyList.do">               
+                  <i class="icon-head"></i> Body
               </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow">
-                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    New product launch
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow">
-                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    Upcoming board meeting
-                  </p>
-                </div>
+              <a class="dropdown-item preview-item" href="dietList.do">
+                  <i class="icon-head"></i> Diet
               </a>
             </div>
           </li>
@@ -77,7 +43,7 @@
               <i class="icon-cog"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Info/Logout</p>
               <a class="dropdown-item preview-item" href="myPage.do">               
                   <i class="icon-head"></i> Profile
               </a>
@@ -86,11 +52,7 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown mr-4 d-lg-flex d-none">
-            <a class="nav-link count-indicatord-flex align-item s-center justify-content-center" href="#">
-              <i class="icon-grid"></i>
-            </a>
-          </li>
+          
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>

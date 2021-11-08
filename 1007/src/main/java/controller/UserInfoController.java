@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,11 +95,7 @@ public class UserInfoController {
 					JBodyDatas.add(jsonBodyData);
 					//System.out.println(JBodyDatas);
 				}
-			}// 데이터가 하나도없으면 그냥 만들지 않는다!
-			
-			
-			
-			
+			}// 데이터가 하나도없으면 그냥 만들지 않는다!	
 			
 			//System.out.println(jsonBodyData);
 
@@ -138,9 +138,6 @@ public class UserInfoController {
 			}*/
 			
 		}
-
-
-
 
 		BodyVO lastBodyVO = new BodyVO(); 
 		DietVO lastDietVO = new DietVO();
@@ -260,12 +257,12 @@ public class UserInfoController {
 		UserInfoVO uVo = (UserInfoVO)session.getAttribute("uVO");
 		vo.setId(uVo.getId());
 		MultipartFile fileupload = vo.getFileUpload();
-		System.out.println("프로필컨트롤러 파일업로드이름 : "+fileupload);
+		//System.out.println("프로필컨트롤러 파일업로드이름 : "+fileupload);
 		
 		 String fileName = fileupload.getOriginalFilename();
          String filename2 = vo.getId()+fileName.substring(fileName.length()-4,fileName.length()); //확장자
-         System.out.println("파일설정 "+filename2);
-         System.out.println("파일이름 : "+fileName);
+         //System.out.println("파일설정 "+filename2);
+         //System.out.println("파일이름 : "+fileName);
 		
 		
 		try {
@@ -318,5 +315,65 @@ public class UserInfoController {
 		return "redirect:main.do";
 	}
 
+	@RequestMapping("newsPage.do")
+	public String newsPage(Model model) {
+		
+		String newsUrl = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%8B%9D%EC%8A%B5%EA%B4%80";
+		Connection conn = Jsoup.connect(newsUrl);
+		
+		Document document;
+		try {
+			document = conn.get();
+			Elements ImageElements = document.getElementsByClass("dsc_thumb");
+			//System.out.println(ImageElements);
+			Elements contentElements = document.getElementsByClass("news_area");
+			//System.out.println(contentElements);
+			Elements locationElements = document.getElementsByClass("news_tit");
+			//System.out.println(locationElements);
+			Elements textContents = document.getElementsByClass("dsc_wrap");
+			//System.out.println(textContents);
+			
+			List<String> newsImg = new ArrayList<String>();
+			List<String> title = new ArrayList<String>();
+			List<String> dNewsUrl = new ArrayList<String>();
+			List<String> content = new ArrayList<String>();
+			
+			
+			for(Element v:ImageElements) {
+				newsImg.add(v.select("img").attr("src"));
+			}
+			
+			for(Element v:contentElements) {
+				title.add(v.select("a").attr("title"));								
+			}
+			for(Element v:locationElements) {
+				
+				dNewsUrl.add(v.select("a").attr("href"));				
+			}
+		
+			for(Element v:textContents) {
+				content.add(v.text());
+								
+			}
 
+			List<String> datas = new ArrayList<String>();
+			for(int i = 0; i<8; i++) {
+				datas.add(newsImg.get(i));
+				
+			}
+		
+			model.addAttribute("title", title);
+			model.addAttribute("newsImg", newsImg);
+			model.addAttribute("dNewsUrl", dNewsUrl);
+			model.addAttribute("content", content);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "newsPage.jsp";
+		
+		
+	}
 }

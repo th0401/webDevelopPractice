@@ -52,7 +52,7 @@
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   
-                  <a href="#" class="auth-link text-black"><spring:message code="message.login.findPw" /></a>
+                  <a href="main.jsp" class="auth-link text-black"><spring:message code="message.login.main" /></a>
                 </div>
                 
                 <div class="text-center mt-4 font-weight-light">
