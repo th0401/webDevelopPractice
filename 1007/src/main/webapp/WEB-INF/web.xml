@@ -15,8 +15,8 @@
     <filter-name>EncFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
     <init-param>
-       <param-name>encoding</param-name>
-       <param-value>UTF-8</param-value>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
     </init-param>
   </filter>
   <filter-mapping>
@@ -28,10 +28,10 @@
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
   <context-param>
-     <param-name>contextConfigLocation</param-name>
-     <param-value>classpath:applicationContext.xml</param-value>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
   <listener>
-     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 </web-app>

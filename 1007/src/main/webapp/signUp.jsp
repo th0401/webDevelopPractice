@@ -40,8 +40,8 @@
               
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" name="id" placeholder="<spring:message code="message.signUp.id" />" required>
-                  <br>
-                  <button type="button" style="background-color: #f7e0f9; border-color: #aa41b3;" class="form-control" onclick="emptyID('signUp')" >id중복체크</button>
+                  <!-- <br>
+                  <button type="button" style="background-color: #f7e0f9; border-color: #aa41b3;" class="form-control" onclick="emptyID('signUp')" >id중복체크</button> -->
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="pw" placeholder="<spring:message code="message.signUp.pw" />" required>
