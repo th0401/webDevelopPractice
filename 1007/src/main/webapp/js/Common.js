@@ -18,6 +18,17 @@ function insertBody(){ // 등록버튼 클릭시 등록폼이 보이게하는 �
 	$('#inBodyBtn').css('visibility','hidden');
 }	 
 
+
+function insertUpdateBtn(id1,id2){
+	$('#'+id1).addClass('displNone');
+	$('#'+id2).removeClass('displNone');
+}
+
+function insertUpdateCancleBtn(id1,id2){
+	$('#'+id1).removeClass('displNone');
+	$('#'+id2).addClass('displNone');
+}
+
 function insertBodyCancle(){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
 
 	$('#inBodyDiv').css('display','none');
