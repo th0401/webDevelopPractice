@@ -19,35 +19,21 @@ function insertBody(){ // 등록버튼 클릭시 등록폼이 보이게하는 �
 }	 
 
 
-function insertUpdateBtn(id1,id2){
+function insertUpdateBtn(id1,id2){ // 등록버튼 클릭시 등록폼이 보이게하는 기능
 	$('#'+id1).addClass('displNone');
 	$('#'+id2).removeClass('displNone');
 }
 
-function insertUpdateCancleBtn(id1,id2){
+function insertUpdateCancleBtn(id1,id2){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
 	$('#'+id1).removeClass('displNone');
 	$('#'+id2).addClass('displNone');
 }
 
-function insertBodyCancle(){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
+function insertBodyCancle(){ 
 
 	$('#inBodyDiv').css('display','none');
 	$('#inBodyBtn').css('visibility','');
-}	 
-
-function insertMainDiet(){ // 등록버튼 클릭시 등록폼이 보이게하는 기능
-
-	$('#recentMainDietForm').addClass('displNone');
-	$('#insertMainDietForm').removeClass('displNone');
-
-}	 
-
-function insertMainDietCancle(){ // 취소버튼 클릭시 등록폼이 사라지게하는 기능
-
-	$('#recentMainDietForm').removeClass('displNone');
-	$('#insertMainDietForm').addClass('displNone');
-
-}	 
+}	 	 
 
 function updateMainDiet(){
 	$('#updateDietMainForm').removeClass('displNone');

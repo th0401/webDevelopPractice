@@ -384,7 +384,7 @@
                       </tbody>
                     </table>
                     <br>
-                   <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="insertMainDiet()" style="width: 170px;">새로 등록하기</button>
+                   <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="insertUpdateBtn('recentMainDietForm','insertMainDietForm')" style="width: 170px;">새로 등록하기</button>
                    <button type="button" class="dietInsBtn btn btn-info" onclick="updateMainDiet()">수정하기</button>
                   </div>
                   <!-- 식단수정 폼 -->
@@ -457,7 +457,7 @@
                     </table>
                     </form>
                     <br>
-                    <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="updateMainDietCancle()" id="insertMainDietBtn" style="width: 170px;">취소하기</button>
+                    <button type="button" class="dietInsBtn btn btn-info marginLeft" onclick="insertUpdateCancleBtn('recentMainDietForm','insertMainDietForm')" id="insertMainDietBtn" style="width: 170px;">취소하기</button>
                    <button type="button" class="dietInsBtn btn btn-info" onclick="dietEditFinish()">수정하기</button>
                    </div>
                    
